@@ -2,10 +2,8 @@ baseURL = "https://k-cross.github.io"
 languageCode = "en-us"
 title = "k-cross"
 theme = "sam"
-preserveTaxonomyNames = true
 enableRobotsTXT = true # generate robots.txt
 pygmentsCodefences = true # Syntax highlighting
-#Paginate = 5
 
 [params]
     dateform            = "Mon Jan 02, 2006"
@@ -14,37 +12,24 @@ pygmentsCodefences = true # Syntax highlighting
     homepage            = "main"                        # What to call the home page link
     galleryFolder       = "images/"                     # Where you've put your images, after "/content/gallery/"
     clickablePhotos     = true                          # Allow links to the full size images
-    footerText          = "Call me Sam, a theme for Hugo."
+    footerText          = "Abstractions from madness!"
 
 # Metadata
-    description         = "A new Hugo site."            # Max 160 characters show in search results
+    description         = "Abstractions from madness!"            # Max 160 characters show in search results
     twitterCard         = "summary_large_image"         # Card value “summary”, “summary_large_image”, “app”, or “player”
     primaryImage        = "/tn.png"                     # Image that shows on Twitter cards and OpenGraph links
 
 [[params.mainMenu]]
-    link = "/posts"
-    text = "writing"
-
-[[params.mainMenu]]
-    link = "/gallery"
-    text = "gallery"
-
-[[params.mainMenu]]
     link = "/about"
-    text = "who is sam?"
-    
-[params.info]
-  description = "Abstractions from madness!"
-  title404 = "Nothing's here!"
+    text = "who?"
 
-[params.comments]
-  enable = false
+[[params.mainMenu]]
+    link = "/posts"
+    text = "what?"
 
-[taxonomies]
-  author = "authors"
-  category = "categories"
-  series = "series"
-  tag = "tags"
+[[params.mainMenu]]
+    link = "/purpose"
+    text = "why?"
 
 [blackfriday]
   hrefTargetBlank = true
