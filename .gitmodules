@@ -1,3 +1,24 @@
 [submodule "themes/after-dark"]
 	path = themes/after-dark
 	url = https://github.com/comfusion/after-dark
+[submodule "themes/minimo"]
+	path = themes/minimo
+	url = https://github.com/MunifTanjim/minimo
+[submodule "themes/finite"]
+	path = themes/finite
+	url = https://github.com/lambdafu/hugo-finite
+[submodule "themes/steam"]
+	path = themes/steam
+	url = https://github.com/digitalcraftsman/hugo-steam-theme
+[submodule "themes/base-16"]
+	path = themes/base-16
+	url = https://github.com/htdvisser/hugo-base16-theme
+[submodule "themes/even"]
+	path = themes/even
+	url = https://github.com/olOwOlo/hugo-theme-even
+[submodule "themes/kube"]
+	path = themes/kube
+	url = https://github.com/jeblister/kube
+[submodule "themes/sam"]
+	path = themes/sam
+	url = https://github.com/vickylai/hugo-theme-sam
