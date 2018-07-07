@@ -2,7 +2,6 @@ baseURL = "https://k-cross.github.io"
 languageCode = "en-us"
 title = "k-cross"
 theme = "sam"
-enableRobotsTXT = true # generate robots.txt
 pygmentsCodefences = true # Syntax highlighting
 
 [params]
