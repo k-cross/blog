@@ -3,6 +3,8 @@ title: "Abstractions"
 date: 2018-07-04T00:06:38-07:00
 draft: false
 ---
+_Foreword: the idea comes from [Greg Young](https://vimeo.com/108441214)._
+
 Correct abstractions in programming are hard to make for the future case.
 Often, not enough data is given at the start of a project and it'll change in such a way that is no longer flexible with the current implementation strategy.
 So how then, should sustainable programs be built?
@@ -80,4 +82,4 @@ At the end of the day,
 ```
 if this doesn't put a smile on you're face, than you're probably a masochist.
 
-_Note: Please treat this article as art rather than science. Absolutely no studies have been done to verify these results._
+_Note: Please treat this article as art rather than science. Absolutely no studies have been done to verify claims._
