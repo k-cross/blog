@@ -5,7 +5,7 @@ draft: false
 ---
 I am a _software engineer_ by trade with professional interests that span a variety of practical and academic fields, from woodworking to mathematics.
 As a computer scientist, the things that truly peak my interest are language and compiler design, distributed systems and algorithms.
-When I'm not working, I'm probably commuting. But when I'm not doing that either, I'm usually playing with my awesome daughter somewhere in the mountains or beach.
+When I'm not working, I'm probably commuting. But when I'm not doing that either, I'm usually playing with my awesome daughter somewhere around mountains or beaches.
 
 Thank you for reading! I've kindly provided social engineers and other parties of interest with the following reconnaissance material.
 
