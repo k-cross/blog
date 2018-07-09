@@ -16,7 +16,7 @@ pygmentsCodefences = true # Syntax highlighting
 # Metadata
     description         = "Abstractions from madness!"            # Max 160 characters show in search results
     twitterCard         = "summary_large_image"         # Card value “summary”, “summary_large_image”, “app”, or “player”
-    primaryImage        = "/gallery/images/console.jpg"                     # Image that shows on Twitter cards and OpenGraph links
+    primaryImage        = "/gallery/images/console.png"                     # Image that shows on Twitter cards and OpenGraph links
 
 [[params.mainMenu]]
     link = "/about"
