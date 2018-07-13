@@ -1,8 +1,8 @@
 ---
 title: "Everything You Ever Wanted to Know About Crashing"
 date: 2018-07-10T17:16:31-07:00
-showDate: true
-draft: true
+showDate: false
+draft: false
 tags: ["error handling","elixir examples","programming"]
 ---
 Being able to just crash an ill running process is awesome.
@@ -11,10 +11,10 @@ Just a nice old fashioned death.
 This comes from _erlang's let it crash_ philosophy.
 But this is about the times when dying is less than desirable.
 
-When and why can a process crash?
+Why should a process be able to crash and when should it?
 They should crash when they're not expected to handle failure.
 They're able to crash because they run in isolated tasks with independent memory spaces that can be restarted and run to completion, or just killed.
-The thing that makes crashing desirable in the first place is the fact that the correct result either doesn't matter or will come to happen regardless of a one off issue.
+The thing that makes crashing desirable in the first place is the fact that the correct result either doesn't matter or will result regardless.
 
 What happens when a failure occurs but a user's expecting a response?
 
@@ -22,7 +22,7 @@ What happens when a failure occurs but a user's expecting a response?
 > Programmer: \\\_(ツ)\_/
 
 Any blocking system call that a user directly relies upon should be handled, whether it's an error message for a non-technical user or a status code for an API consumer.
-This doesn't matter for asynchronous calls since their nature allows their errors to be handled with no user interaction.
+This doesn't matter for asynchronous calls since their errors can be handled with no user interaction.
 Those wayward children can be thrown in a task supervisor and restarted.
 In essence if a program needs to relay a message, error handling becomes a requirement.
 
@@ -36,8 +36,6 @@ val1 = :some_value
 with :expected_result1 = val2 <- fun1(val1),
      :expected_result2 <- fun2(val2) do
   :expected_result
-else
-  error_response
 end
 
 def fun1(val) do
@@ -50,12 +48,12 @@ end
 def fun2(:expected_result1), do: :expected_result2
 def fun2(val), do: {:error, "Some message"}
 ```
-Any error that happens anywhere in this function call pipeline simply redirects to the error handler.
+Any error that happens in this function call pipeline simply redirects to it's function's error handler.
 There are many ways to deal with error cases but pattern matching on expected results with a catch all on the unexpected ones (or the well known error cases for more tailored responses) create a robust foundation with clear acceptance criteria.
 But notice, each function is handling errors here.
-Using the `with` here makes this cleaner since we don't need to handle errors in function arguments, but handling errors in each function call is not ideal either.
+Using `with` here makes this cleaner since we don't need to handle errors in function calls, but handling errors inside each function is not ideal either.
 
-Looking at a more complicated example should reveal a solution.
+Looking at a slightly more complicated example should demonstrate why.
 ```elixir
 # Some more blocking code
 def blocking_call({:msg1, val1}, :state) do
@@ -117,8 +115,9 @@ def extremely_long_running_function(val) do
   :ok
 end
 ```
-All that happens here is that we return `:ok` for the asynchronous call, pawning off error handling and retry logic to the supervisor.
+The thing of interest is `:ok` is returned for the asynchronous call, regardless of its success, pawning off error handling and retry logic to the supervisor.
+When a thing just needs to happen and no response is needed, then make it asynchronous.
+Just because the client needs a response doesn't necessarily mean that the entire request needs to be blocking.
 
-Now if there's faulty code running in production, that's another issue entirely.
 Hopefully this demonstrates the delegation of error handling to robust services and generic functions.
-Obviously this will differ in implementation from language to language, but that's an exercise for the reader `;)`.
+Obviously this will differ in implementation from language to language and project to project, but that's an exercise for the reader `;)`.
