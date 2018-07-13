@@ -2,6 +2,7 @@
 title: "Elixir Impressions"
 date: 2018-07-07T00:36:24-07:00
 draft: false
+tags: ["elixir","functional programming","languages"]
 ---
 _TLDR: Elixir is f*!#ing awesome!_
 

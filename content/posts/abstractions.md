@@ -2,6 +2,7 @@
 title: "Abstractions"
 date: 2018-07-04T00:06:38-07:00
 draft: false
+tags: ["optimize for deletion","software engineering","programming","paradigms"]
 ---
 _Foreword: the idea comes from [Greg Young](https://vimeo.com/108441214)._
 
