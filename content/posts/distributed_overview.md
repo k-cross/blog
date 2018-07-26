@@ -40,4 +40,34 @@ This is the problem that first introduced me to concurrent computing.
 It's stated in the following way:
 
 > Alice and Bob are roomates that hate each other, but they must live with each other and both love bread.
-> They have decided that
+> They have decided that the best way to not see each others faces is to create a wall between their living spaces where there is a two door container for each side of the wall.
+> The bread is stored in this container, so how can we create an algorithm such that they will always have bread or have a clear answer about what to do when they don't.
+
+## The Dining Philosophers
+
+This problem is about handling deadlocks and how to prevent them while maximizing resources available.
+
+> There are five philosophers sitting at a round table.
+> Each one is hungry and either decides to debate with other philosophers or eat.
+> There is exactly one fork to each philosophers left and right side, but they require two in order to eat.
+> How can the philosophers debate and eat in peace?
+
+## The Two Lovers
+
+This is a coordination problem.
+
+> Two lovers need to decide when to meet and can only send messages to each other.
+> How can they decide when and where to meet?
+> If one lover makes the mistake to come to the wrong place or at the wrong time, the relationship will end.
+
+## Movie Night
+
+
+## Byzantine Generals
+
+This deals with trust and coordination in distributed systems.
+
+> There are five generals which need to coordinate to either strike or flee an enemy.
+> Each general can only write messages to each other and all generals will know who sent which messages.
+> There is a traitor amongst the generals, who will send bad messages, how do can they come to a real agreement?
+
