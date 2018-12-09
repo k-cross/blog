@@ -1,7 +1,7 @@
 ---
 title: "Osmosis Driven Development"
 date: 2018-10-29T07:59:41-07:00
-showDate: true
+showDate: false
 draft: false
 tags: ["software engineering","development processes","communication"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Distributed Systems Overview"
 date: 2018-07-18T09:20:30-07:00
-showDate: true
+showDate: false
 draft: true
 tags: ["computing","distributed", "programming", "open problems"]
 ---

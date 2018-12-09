@@ -1,6 +1,7 @@
 ---
 title: "Abstractions"
 date: 2018-07-04T00:06:38-07:00
+showDate: false
 draft: false
 tags: ["optimize for deletion","software engineering","programming","paradigms"]
 ---

@@ -1,6 +1,7 @@
 ---
 title: "Elixir Impressions"
 date: 2018-07-07T00:36:24-07:00
+showDate: false
 draft: false
 tags: ["elixir","functional programming","languages"]
 ---
