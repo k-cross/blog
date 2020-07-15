@@ -3,11 +3,11 @@ layout: post
 title: 'Osmosis Driven Development'
 author: [quasarken]
 tags: ['Development Processes','Communication']
-excerpt: 'A review of the team collaboration process.'
+excerpt: 'A review of the team collaboration process'
 date: 2018-10-29T07:59:41-07:00
 draft: false
 ---
-Once upon a time in a magical world where all tasks are well defined, performing task _Y_ or implementing feature _X_ is a simple matter of doing;
+Once upon a time in a magical world where all tasks are well defined, performing task $$Y$$ or implementing feature $$X$$ is a simple matter of doing;
 In this world, only the current state of the feature needs to be communicated.
 A product manager could tell the sales team what engineering was capable of performing based on raw metrics and create hard deadlines, meaningful to customers.
 Time is used as a means to measure progress and productivity, two clear indicators that show how hard people are working.

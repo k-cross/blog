@@ -3,9 +3,9 @@ layout: post
 title: 'Distributed Algorithms: An Introduction'
 author: [quasarken]
 tags: ['Computing','Open Problems']
-excerpt: 'An introduction into the world of distributed programming problems.'
+excerpt: 'An introduction into the world of distributed computing and its problems'
 date: 2020-07-18T09:20:30-07:00
-draft: true
+draft: false
 ---
 
 The goal here is to give an overview of common problems in the distributed computing space along with some common names.

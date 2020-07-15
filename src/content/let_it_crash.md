@@ -1,12 +1,13 @@
 ---
 layout: post
-title: 'Everything You Ever Wanted to Know About Crashing'
+title: 'Reflecting on Software Failure'
 author: [quasarken]
 tags: ['Error Handling','Elixir Examples','Programming']
 excerpt: 'Thoughts on the "let it crash" philosophy.'
-date: 2018-07-10T17:16:31-07:00
+date: 2020-07-10T17:16:31-07:00
 draft: false
 ---
+
 Being able to just crash an ill running process is awesome.
 No need to handle it, no need to `kill -9` a pesky service because of a buggy system call handler.
 Just a nice old fashioned death.

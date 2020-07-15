@@ -2,7 +2,7 @@
 layout: post
 title: 'Three Phase Commit'
 author: [quasarken]
-excerpt: 'Updating the research on software engineering process and thoughts on its applications.'
+excerpt: 'Updating the research on software engineering process and thoughts on its applications'
 tags: ['Data Migrations','Zero Downtime']
 date: 2018-12-09T12:35:54-07:00
 draft: false

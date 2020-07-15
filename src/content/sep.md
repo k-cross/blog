@@ -3,12 +3,10 @@ layout: post
 title: 'A Guide to More Effective Software Engineering Processes'
 author: [quasarken]
 tags: ['Software Engineering', 'Collaboration', 'Team Processes']
-excerpt: 'Updating the research on software engineering process and thoughts on its applications.'
-image: img/demo4.jpg
+excerpt: 'Using research to review software engineering processes'
 date: '2020-07-14T15:11:55.000Z'
-draft: true
+draft: false
 ---
-
 Software engineering processes have traditionally been applied as a series of anecdotes based on the _well-formed_ evidence of personal experiences and conjecture.
 As engineers being trained in the scientific method, we should be better.
 Reading _Making Software: What Really Works and Why We Believe It_ was inspiring and as such began to dig into more of the research to see how it can be used to modernize the software engineering process.

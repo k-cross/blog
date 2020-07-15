@@ -32,8 +32,6 @@ interface PageTemplateProps {
       timeToRead: string;
       frontmatter: {
         title: string;
-        date: string;
-        userDate: string;
         image: {
           childImageSharp: {
             fluid: any;
@@ -48,7 +46,6 @@ interface PageTemplateProps {
           timeToRead: number;
           frontmatter: {
             title: string;
-            date: string;
           };
           fields: {
             slug: string;
@@ -75,7 +72,6 @@ export interface PageContext {
       };
     };
     title: string;
-    date: string;
   };
 }
 
@@ -104,9 +100,6 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
             content={`${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`}
           />
         )}
-        <meta property="article:published_time" content={post.frontmatter.date} />
-        {/* not sure if modified time possible */}
-        {/* <meta property="article:modified_time" content="2018-08-20T15:12:00.000Z" /> */}
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.frontmatter.title} />
@@ -271,8 +264,6 @@ export const query = graphql`
       timeToRead
       frontmatter {
         title
-        userDate: date(formatString: "D MMMM YYYY")
-        date
         image {
           childImageSharp {
             fluid(maxWidth: 3720) {

@@ -2,8 +2,7 @@
 layout: post
 title: 'Abstractions'
 author: [quasarken]
-excerpt: 'Reflecting on "The Art of Destroying Software" by Greg Young.'
-image: img/demo4.jpg
+excerpt: 'Reflecting on "The Art of Destroying Software" by Greg Young'
 tags: ['Programming Paradigms']
 date: 2018-07-04T00:06:38-07:00
 draft: false

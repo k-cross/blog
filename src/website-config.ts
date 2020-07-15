@@ -20,7 +20,6 @@ export interface WebsiteConfig {
    * Meta tag for Google Webmaster Tools
    */
   googleSiteVerification?: string;
-  footer?: string;
 }
 
 const config: WebsiteConfig = {
@@ -32,7 +31,6 @@ const config: WebsiteConfig = {
   siteUrl: 'https://k-cross.github.io',
   twitter: 'https://twitter.com/quasarken',
   googleSiteVerification: 'GoogleCode',
-  footer: 'engineered insight',
 };
 
 export default config;
