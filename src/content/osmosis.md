@@ -2,9 +2,10 @@
 layout: post
 title: 'Osmosis Driven Development'
 author: [quasarken]
-tags: ['Development Processes','Communication']
+tags: ['Opinion','Software Engineering']
 excerpt: 'A review of the team collaboration process'
 date: 2018-10-29T07:59:41-07:00
+modified: 2020-07-16T00:06:38-07:00
 draft: false
 ---
 Once upon a time in a magical world where all tasks are well defined, performing task $$Y$$ or implementing feature $$X$$ is a simple matter of doing;

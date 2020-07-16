@@ -85,7 +85,7 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
   }
 
   return (
-    <IndexLayout className="post-template">
+    <IndexLayout>
       <Helmet>
         <html lang={config.lang} />
         <title>{post.frontmatter.title}</title>

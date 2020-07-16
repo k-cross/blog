@@ -2,9 +2,10 @@
 layout: post
 title: 'Elixir Impressions'
 author: [quasarken]
-tags: ['Elixir','Functional Programming','Programming Languages']
+tags: ['Opinion','Software Engineering']
 excerpt: 'TLDR: Elixir is awesome!!!'
 date: 2018-07-07T00:36:24-07:00
+modified: 2020-07-16T00:06:38-07:00
 draft: false
 ---
 
