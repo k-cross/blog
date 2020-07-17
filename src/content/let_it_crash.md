@@ -3,7 +3,7 @@ layout: post
 title: 'Reflecting on Software Failure'
 author: [quasarken]
 tags: ['Opinion','Software Engineering']
-excerpt: 'Thoughts on the "let it crash" philosophy.'
+excerpt: 'Thoughts on the "let it crash" philosophy'
 date: 2018-07-10T17:16:31-07:00
 modified: 2020-07-16T00:06:38-07:00
 draft: false
