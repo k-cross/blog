@@ -9,25 +9,24 @@ modified: 2020-07-16T00:06:38-07:00
 draft: false
 ---
 
-Paving a path towards continuous delivery and zero downtime deployments is a challenging pursuit.
-It seems that each organization has a different strategy to employ and different techniques to use.
-One of the more generic solutions that is at the heart of this article was inspired by the three-phase-commit.
-Its origin stems from _computer networking_. 
-It's a way to perform the non-blocking version of the two-phase commit protocol, described as:
+Paving a path towards continuous delivery and zero downtime deployments is a challenging pursuit especially when each project employs its own strategy.
+One generic solution that is at the heart of this article was inspired by the three-phase-commit.
+Its origin stems from _computer networking_ as a way to perform the non-blocking version of the two-phase commit protocol, described as:
 
-1. The voting phase: a coordinator tries to prepare all the transaction's participants, communicating to proceed until either committing or aborting.
-1. The commit phase: depending on participant votes, the coordinator decides to commit if all voted _agree_ otherwise it _aborts_ and notifies all participants.
+1. voting phase: a coordinator prepares all transaction participants, signaling to proceed until either committing or aborting.
+1. commit phase: depending on participant votes, the coordinator decides to _commit_ if all voted _agree_ otherwise it _aborts_ and notifies all participants.
 
-Unlike networking however, we care about _contention_ for _resources_ with respect to databases and long-lived state in memory.
-Taking downtime is commonly caused by blocking actions from locking mechanisms with respect to a common resource.
-Another reason for taking downtime is to ensure the stability of the environment upon an update to refresh the _state_ of application processes.
-Since causes for downtime can often be determined they can be planned around.
+Adapting these to web applications, the _contention_ for _resources_ occurs with respect to databases and long-lived state.
+Taking downtime is commonly due to blocking operations from locking mechanisms over shared resources.
+To ensure the stability of an application's environment while updating, taking downtime will guarantee _state_ remains consistent for all services and users.
+Since causes for downtime can be determined in advance, using more sophisticated approaches to eliminate it is possible.
+Executing data migrations as three distinct phases is a generic approach that anyone can employ making zero-downtime deployments a step closer.
 
 ## Construction Phase
 
-The first phase with respect to applications and databases deals with the creation or generation of a new entity.
-In a database, this might mean a new table or column.
-If the new entity is meant to replace on old entity then dual writing is the first step to take.
+The first phase involves the creation or generation of new entities.
+In a database, this might mean new tables or columns.
+If a new entity is meant to replace an old entity, then dual writing is the first step to take.
 This is when both new and old entities are recorded in the database alongside the running application as normal.
 If the new entity has no requirement on an existing entity then its business as usual.
 In an application, a new data structure intended to replace an old one is a common source failure.
