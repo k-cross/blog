@@ -2,16 +2,6 @@
 
 A blog built with gatsby using a modified casper theme.
 
-## Getting Started
-
-Clone this repo.
-
-```
-git clone https://github.com/scttcper/gatsby-casper.git --depth=1
-```
-
-Edit website-config.ts with your website settings.
-
 ## How to configure Google Analytics
 
 Edit `gatsby-config.js` and add your tracking ID
