@@ -51,7 +51,7 @@ interface PageTemplateProps {
         title: string;
         date: string;
         userDate: string;
-        image: {
+        picture: {
           childImageSharp: {
             fluid: any;
           };
@@ -90,7 +90,7 @@ export interface PageContext {
     slug: string;
   };
   frontmatter: {
-    image: {
+    picture: {
       childImageSharp: {
         fluid: FluidObject;
       };
@@ -108,9 +108,9 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
   const post = props.data.markdownRemark;
   let width = '';
   let height = '';
-  if (post.frontmatter.image?.childImageSharp) {
-    width = post.frontmatter.image.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
-    height = String(Number(width) / post.frontmatter.image.childImageSharp.fluid.aspectRatio);
+  if (post.frontmatter.picture?.childImageSharp) {
+    width = post.frontmatter.picture.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
+    height = String(Number(width) / post.frontmatter.picture.childImageSharp.fluid.aspectRatio);
   }
 
   const date = new Date(post.frontmatter.date);
@@ -131,10 +131,10 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
         <meta property="og:title" content={post.frontmatter.title} />
         <meta property="og:description" content={post.frontmatter.excerpt || post.excerpt} />
         <meta property="og:url" content={config.siteUrl + props.pathContext.slug} />
-        {post.frontmatter.image?.childImageSharp && (
+        {post.frontmatter.picture?.childImageSharp && (
           <meta
             property="og:image"
-            content={`${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`}
+            content={`${config.siteUrl}${post.frontmatter.picture.childImageSharp.fluid.src}`}
           />
         )}
         <meta property="article:published_time" content={post.frontmatter.date} />
@@ -148,10 +148,10 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
         <meta name="twitter:title" content={post.frontmatter.title} />
         <meta name="twitter:description" content={post.frontmatter.excerpt || post.excerpt} />
         <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
-        {post.frontmatter.image?.childImageSharp && (
+        {post.frontmatter.picture?.childImageSharp && (
           <meta
             name="twitter:image"
-            content={`${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`}
+            content={`${config.siteUrl}${post.frontmatter.picture.childImageSharp.fluid.src}`}
           />
         )}
         <meta name="twitter:label1" content="Written by" />
@@ -184,7 +184,7 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
         <main id="site-main" className="site-main" css={[SiteMain, outer]}>
           <div css={inner}>
             {/* TODO: no-image css tag? */}
-            <article css={[PostFull, !post.frontmatter.image && NoImage]}>
+            <article css={[PostFull, !post.frontmatter.picture && NoImage]}>
               <PostFullHeader className="post-full-header">
                 <PostFullTags className="post-full-tags">
                   {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
@@ -221,11 +221,11 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
                 </PostFullByline>
               </PostFullHeader>
 
-              {post.frontmatter.image?.childImageSharp && (
+              {post.frontmatter.picture?.childImageSharp && (
                 <PostFullImage>
                   <Img
                     style={{ height: '100%' }}
-                    fluid={post.frontmatter.image.childImageSharp.fluid}
+                    fluid={post.frontmatter.picture.childImageSharp.fluid}
                     alt={post.frontmatter.title}
                   />
                 </PostFullImage>
@@ -454,7 +454,7 @@ export const query = graphql`
         date
         tags
         excerpt
-        image {
+        picture {
           childImageSharp {
             fluid(maxWidth: 3720) {
               ...GatsbyImageSharpFluid

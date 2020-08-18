@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
           <Link to="/">{config.title}</Link> &copy; {new Date().getFullYear()}{' '}
         </section>
         <SiteFooterNav>
-          <Link to="/">Latest Posts</Link>
+          <Link to="/posts">Latest Posts</Link>
           {config.twitter && (
             <a href={config.twitter} target="_blank" rel="noopener noreferrer">
               Twitter

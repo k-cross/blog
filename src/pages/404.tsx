@@ -68,7 +68,7 @@ export const pageQuery = graphql`
             title
             date
             tags
-            image {
+            picture {
               childImageSharp {
                 fluid(maxWidth: 3720) {
                   ...GatsbyImageSharpFluid

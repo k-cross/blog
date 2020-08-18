@@ -64,7 +64,7 @@ exports.createPages = async ({ graphql, actions }) => {
               date
               draft
               excerpt
-              image {
+              picture {
                 childImageSharp {
                   fluid(maxWidth: 3720) {
                     aspectRatio
@@ -125,7 +125,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
-      path: i === 0 ? '/' : `/${i + 1}`,
+      path: i === 0 ? '/posts' : `/${i + 1}`,
       component: path.resolve('./src/templates/index.tsx'),
       context: {
         limit: postsPerPage,

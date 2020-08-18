@@ -2,7 +2,7 @@
 layout: isolated
 title: 'About'
 excerpt: 'Who I am and the modus operandi'
-image: img/moma/abstract_bird.jpg
+picture: img/moma/abstract_bird.jpg
 date: 2016-12-20T23:49:16-07:00
 draft: false
 ---

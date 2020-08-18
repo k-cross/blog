@@ -38,7 +38,7 @@ interface TagTemplateProps {
         node: {
           id: string;
           description: string;
-          image?: {
+          picture?: {
             childImageSharp: {
               fluid: FluidObject;
             };
@@ -96,7 +96,7 @@ const Tags: React.FC<TagTemplateProps> = props => {
           </div>
           <ResponsiveHeaderBackground
             css={[outer, SiteHeaderBackground]}
-            backgroundImage={tagData?.node?.image?.childImageSharp?.fluid?.src}
+            backgroundImage={tagData?.node?.picture?.childImageSharp?.fluid?.src}
             className="site-header-background"
           >
             <SiteHeaderContent css={inner} className="site-header-content">
@@ -139,7 +139,7 @@ export const pageQuery = graphql`
         node {
           id
           description
-          image {
+          picture {
             childImageSharp {
               fluid(maxWidth: 3720) {
                 ...GatsbyImageSharpFluid
@@ -164,7 +164,7 @@ export const pageQuery = graphql`
             excerpt
             tags
             date
-            image {
+            picture {
               childImageSharp {
                 fluid(maxWidth: 1240) {
                   ...GatsbyImageSharpFluid

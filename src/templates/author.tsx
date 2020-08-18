@@ -229,7 +229,7 @@ export const pageQuery = graphql`
             tags
             date
             draft
-            image {
+            picture {
               childImageSharp {
                 fluid(maxWidth: 3720) {
                   ...GatsbyImageSharpFluid

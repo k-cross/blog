@@ -1,32 +1,31 @@
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { FixedObject } from 'gatsby-image';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import { css } from '@emotion/core';
 
-import { Footer } from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
-import Pagination from '../components/Pagination';
 import { PostCard } from '../components/PostCard';
 import { Wrapper } from '../components/Wrapper';
+import { Footer } from '../components/Footer';
 import IndexLayout from '../layouts';
 import {
   inner,
   outer,
-  PostFeed,
   Posts,
+  PostFeed,
+  SiteMain,
+  SiteTitle,
   SiteDescription,
   SiteHeader,
   SiteHeaderContent,
-  SiteMain,
-  SiteTitle,
   SiteHeaderStyles,
 } from '../styles/shared';
 import config from '../website-config';
-import { PageContext } from './post';
+import { PageContext } from '../templates/post';
 
-export interface IndexProps {
+interface MainProps {
   pageContext: {
     currentPage: number;
     numPages: number;
@@ -50,11 +49,12 @@ export interface IndexProps {
   };
 }
 
-const IndexPage: React.FC<IndexProps> = props => {
+const MainPage: React.FC<IndexTemplateProps> = props => {
   const { width, height } = props.data.header.childImageSharp.fixed;
+  const { edges } = props.data.allMarkdownRemark;
 
   return (
-    <IndexLayout css={HomePosts}>
+    <IndexLayout css={[HomePosts]}>
       <Helmet>
         <html lang={config.lang} />
         <title>{config.title}</title>
@@ -129,13 +129,6 @@ const IndexPage: React.FC<IndexProps> = props => {
             </div>
           </div>
         </main>
-        {props.children}
-        {props.pageContext.numPages > 1 && (
-          <Pagination
-            currentPage={props.pageContext.currentPage}
-            numPages={props.pageContext.numPages}
-          />
-        )}
         <Footer />
       </Wrapper>
     </IndexLayout>
@@ -143,7 +136,7 @@ const IndexPage: React.FC<IndexProps> = props => {
 };
 
 export const pageQuery = graphql`
-  query blogPageQuery($skip: Int!, $limit: Int!) {
+  query {
     logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
@@ -163,10 +156,9 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(
+      limit: 1
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { draft: { ne: true } } }
-      limit: $limit
-      skip: $skip
     ) {
       edges {
         node {
@@ -175,8 +167,6 @@ export const pageQuery = graphql`
             title
             date
             tags
-            draft
-            excerpt
             picture {
               childImageSharp {
                 fluid(maxWidth: 3720) {
@@ -267,4 +257,4 @@ const HomePosts = css`
   }
 `;
 
-export default IndexPage;
+export default MainPage;
