@@ -39,24 +39,6 @@ interface PageTemplateProps {
         };
       };
     };
-    relatedPosts: {
-      totalCount: number;
-      edges: Array<{
-        node: {
-          timeToRead: number;
-          frontmatter: {
-            title: string;
-          };
-          fields: {
-            slug: string;
-          };
-        };
-      }>;
-    };
-  };
-  pageContext: {
-    prev: PageContext;
-    next: PageContext;
   };
 }
 

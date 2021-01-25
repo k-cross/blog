@@ -1,5 +1,4 @@
 import { graphql } from 'gatsby';
-import { FixedObject } from 'gatsby-image';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
@@ -23,35 +22,9 @@ import {
   SiteHeaderStyles,
 } from '../styles/shared';
 import config from '../website-config';
-import { PageContext } from '../templates/post';
-
-interface MainProps {
-  pageContext: {
-    currentPage: number;
-    numPages: number;
-  };
-  data: {
-    logo: {
-      childImageSharp: {
-        fixed: FixedObject;
-      };
-    };
-    header: {
-      childImageSharp: {
-        fixed: FixedObject;
-      };
-    };
-    allMarkdownRemark: {
-      edges: Array<{
-        node: PageContext;
-      }>;
-    };
-  };
-}
 
 const MainPage: React.FC<IndexTemplateProps> = props => {
   const { width, height } = props.data.header.childImageSharp.fixed;
-  const { edges } = props.data.allMarkdownRemark;
 
   return (
     <IndexLayout css={[HomePosts]}>

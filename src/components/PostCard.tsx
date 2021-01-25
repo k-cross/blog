@@ -1,6 +1,5 @@
 import { format } from 'date-fns';
 import { Link } from 'gatsby';
-import Img from 'gatsby-image';
 import { lighten } from 'polished';
 import React from 'react';
 
@@ -24,24 +23,9 @@ export const PostCard: React.FC<PostCardProps> = ({ post, large = false }) => {
 
   return (
     <article
-      className={`post-card ${post.frontmatter.image ? '' : 'no-image'} ${
-        large ? 'post-card-large' : ''
-      }`}
+      className={`post-card ${large ? 'post-card-large' : ''}`}
       css={[PostCardStyles, large && PostCardLarge]}
     >
-      {post.frontmatter.image && (
-        <Link className="post-card-image-link" css={PostCardImageLink} to={post.fields.slug}>
-          <PostCardImage className="post-card-image">
-            {post.frontmatter?.image?.childImageSharp?.fluid && (
-              <Img
-                alt={`${post.frontmatter.title} cover image`}
-                style={{ height: '100%' }}
-                fluid={post.frontmatter.image.childImageSharp.fluid}
-              />
-            )}
-          </PostCardImage>
-        </Link>
-      )}
       <PostCardContent className="post-card-content">
         <Link className="post-card-content-link" css={PostCardContentLink} to={post.fields.slug}>
           <PostCardHeader className="post-card-header">
@@ -137,20 +121,6 @@ const PostCardLarge = css`
       line-height: 1.5em;
     }
   }
-`;
-
-const PostCardImageLink = css`
-  position: relative;
-  display: block;
-  overflow: hidden;
-  border-radius: 5px 5px 0 0;
-`;
-
-const PostCardImage = styled.div`
-  width: auto;
-  height: 200px;
-  background: ${colors.lightgrey} no-repeat center center;
-  background-size: cover;
 `;
 
 const PostCardContent = styled.div`
