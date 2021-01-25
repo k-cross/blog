@@ -32,7 +32,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       createNodeField({
         node,
         name: 'layout',
-        value: layout || '',
+        value: layout || 'isolated',
       });
 
       createNodeField({
@@ -152,7 +152,7 @@ exports.createPages = async ({ graphql, actions }) => {
       // template.
       //
       // Note that the template has to exist first, or else the build will fail.
-      component: path.resolve(`./src/templates/${layout || 'post'}.tsx`),
+      component: path.resolve(`./src/templates/${layout || 'isolated'}.tsx`),
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
         slug,
@@ -178,18 +178,6 @@ exports.createPages = async ({ graphql, actions }) => {
       component: tagTemplate,
       context: {
         tag,
-      },
-    });
-  });
-
-  // Create author pages
-  const authorTemplate = path.resolve('./src/templates/author.tsx');
-  result.data.allAuthorYaml.edges.forEach(edge => {
-    createPage({
-      path: `/author/${_.kebabCase(edge.node.id)}/`,
-      component: authorTemplate,
-      context: {
-        author: edge.node.id,
       },
     });
   });
