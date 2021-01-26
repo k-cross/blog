@@ -150,8 +150,6 @@ exports.createPages = async ({ graphql, actions }) => {
       // long as the corresponding template file exists in src/templates.
       // If no template is set, it will fall back to the default `post`
       // template.
-      //
-      // Note that the template has to exist first, or else the build will fail.
       component: path.resolve(`./src/templates/${layout || 'isolated'}.tsx`),
       context: {
         // Data passed to context is available in page queries as GraphQL variables.

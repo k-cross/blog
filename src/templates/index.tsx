@@ -157,7 +157,7 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { draft: { ne: true } } }
+      filter: { frontmatter: { draft: { ne: true }, layout: { eq: "post" } } }
       limit: $limit
       skip: $skip
     ) {
@@ -193,7 +193,6 @@ export const pageQuery = graphql`
           }
           excerpt
           fields {
-            layout
             slug
           }
         }
