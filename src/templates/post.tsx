@@ -51,6 +51,7 @@ interface PageTemplateProps {
         title: string;
         date: string;
         userDate: string;
+        modified: string;
         picture: {
           childImageSharp: {
             fluid: any;
@@ -69,6 +70,7 @@ interface PageTemplateProps {
           frontmatter: {
             title: string;
             date: string;
+            modified: string;
           };
           fields: {
             slug: string;
@@ -98,6 +100,7 @@ export interface PageContext {
     excerpt: string;
     title: string;
     date: string;
+    modified: string;
     draft?: boolean;
     tags: string[];
     author: Author[];
@@ -114,10 +117,12 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
   }
 
   const date = new Date(post.frontmatter.date);
+  const modifiedDate = new Date(post.frontmatter.modified);
   // 2018-08-20
   const datetime = format(date, 'yyyy-MM-dd');
   // 20 AUG 2018
   const displayDatetime = format(date, 'dd LLL yyyy');
+  const displayModifiedDT = format(modifiedDate, 'dd LLL yyyy');
 
   return (
     <IndexLayout className="post-template">
@@ -202,11 +207,14 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
                     <AuthorList authors={post.frontmatter.author} tooltip="large" />
                     <section className="post-full-byline-meta">
                       <h4 className="author-name">
-                        {post.frontmatter.author.map(author => (author.id))}
+                        {post.frontmatter.author.map(author => author.id)}
                       </h4>
                       <div className="byline-meta-content">
                         <time className="byline-meta-date" dateTime={datetime}>
-                          {displayDatetime}
+                          published {displayDatetime}
+                        </time>
+                        <time className="byline-meta-date" dateTime={datetime}>
+                          <span className="bull">&bull;</span> last modified {displayModifiedDT}
                         </time>
                         <span className="byline-reading-time">
                           <span className="bull">&bull;</span> {post.timeToRead} min read
@@ -296,7 +304,7 @@ export const PostFullHeader = styled.header`
   }
 `;
 
-const PostFullTags = styled.section`
+export const PostFullTags = styled.section`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -308,7 +316,7 @@ const PostFullTags = styled.section`
   text-transform: uppercase;
 `;
 
-const PostFullCustomExcerpt = styled.p`
+export const PostFullCustomExcerpt = styled.p`
   margin: 20px 0 0;
   color: var(--midgrey);
   font-family: Georgia, serif;
@@ -327,7 +335,7 @@ const PostFullCustomExcerpt = styled.p`
   }
 `;
 
-const PostFullByline = styled.div`
+export const PostFullByline = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 35px 0 0;
@@ -448,6 +456,7 @@ export const query = graphql`
         title
         userDate: date(formatString: "D MMMM YYYY")
         date
+        modified
         tags
         excerpt
         picture {
@@ -486,6 +495,7 @@ export const query = graphql`
           frontmatter {
             title
             date
+            modified
           }
           fields {
             slug

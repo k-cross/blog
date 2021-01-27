@@ -1,14 +1,14 @@
-import { graphql } from 'gatsby';
 import React from 'react';
+import { graphql, Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
-
-import { css } from '@emotion/core';
+import * as _ from 'lodash';
 
 import SiteNav from '../components/header/SiteNav';
-import { PostCard } from '../components/PostCard';
+import PostContent from '../components/PostContent';
 import { Wrapper } from '../components/Wrapper';
 import { Footer } from '../components/Footer';
 import IndexLayout from '../layouts';
+import { PostFull, PostFullHeader, PostFullTags, PostFullTitle } from '../templates/post';
 import {
   inner,
   outer,
@@ -23,11 +23,13 @@ import {
 } from '../styles/shared';
 import config from '../website-config';
 
+import 'katex/dist/katex.min.css';
+
 const MainPage: React.FC<IndexTemplateProps> = props => {
   const { width, height } = props.data.header.childImageSharp.fixed;
 
   return (
-    <IndexLayout css={[HomePosts]}>
+    <IndexLayout>
       <Helmet>
         <html lang={config.lang} />
         <title>{config.title}</title>
@@ -91,12 +93,22 @@ const MainPage: React.FC<IndexTemplateProps> = props => {
           <div css={[inner, Posts]}>
             <div css={[PostFeed]}>
               {props.data.allMarkdownRemark.edges.map((post, index) => {
-                // filter out drafts in production
                 return (
-                  (post.node.frontmatter.draft !== true ||
-                    process.env.NODE_ENV !== 'production') && (
-                    <PostCard key={post.node.fields.slug} post={post.node} large={index === 0} />
-                  )
+                  <article key={post.node.fields.slug} css={[PostFull]}>
+                    <PostFullHeader className="post-full-header">
+                      <PostFullTags className="post-full-tags">
+                        {post.node.frontmatter.tags && post.node.frontmatter.tags.length > 0 && (
+                          <Link to={`/tags/${_.kebabCase(post.node.frontmatter.tags[0])}/`}>
+                            {post.node.frontmatter.tags[0]}
+                          </Link>
+                        )}
+                      </PostFullTags>
+                      <PostFullTitle className="post-full-title">
+                        {post.node.frontmatter.title}
+                      </PostFullTitle>
+                    </PostFullHeader>
+                    <PostContent htmlAst={post.node.htmlAst} />
+                  </article>
                 );
               })}
             </div>
@@ -131,7 +143,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       limit: 1
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { draft: { ne: true } } }
+      filter: { frontmatter: { draft: { ne: true }, layout: { eq: "post" } } }
     ) {
       edges {
         node {
@@ -140,92 +152,16 @@ export const pageQuery = graphql`
             title
             date
             tags
-            picture {
-              childImageSharp {
-                fluid(maxWidth: 3720) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            author {
-              id
-              bio
-              avatar {
-                children {
-                  ... on ImageSharp {
-                    fluid(quality: 100, srcSetBreakpoints: [40, 80, 120]) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-              }
-            }
           }
           excerpt
+          html
+          htmlAst
           fields {
             layout
             slug
           }
         }
       }
-    }
-  }
-`;
-
-const HomePosts = css`
-  @media (min-width: 795px) {
-    .post-card-large {
-      flex: 1 1 100%;
-      flex-direction: row;
-      padding-bottom: 40px;
-      min-height: 280px;
-      border-top: 0;
-    }
-
-    .post-card-large .post-card-title {
-      margin-top: 0;
-      font-size: 3.2rem;
-    }
-
-    .post-card-large:not(.no-image) .post-card-header {
-      margin-top: 0;
-    }
-
-    .post-card-large .post-card-image-link {
-      position: relative;
-      flex: 1 1 auto;
-      margin-bottom: 0;
-      min-height: 380px;
-    }
-
-    .post-card-large .post-card-image {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-
-    .post-card-large .post-card-content {
-      flex: 0 1 361px;
-      justify-content: center;
-    }
-
-    .post-card-large .post-card-title {
-      margin-top: 0;
-      font-size: 3.2rem;
-    }
-
-    .post-card-large .post-card-content-link {
-      padding: 0 0 0 40px;
-    }
-
-    .post-card-large .post-card-meta {
-      padding: 0 0 0 40px;
-    }
-
-    .post-card-large .post-card-excerpt p {
-      margin-bottom: 1.5em;
-      font-size: 1.8rem;
-      line-height: 1.5em;
     }
   }
 `;
