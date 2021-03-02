@@ -31,11 +31,6 @@ export interface IndexProps {
     numPages: number;
   };
   data: {
-    logo: {
-      childImageSharp: {
-        fixed: FixedObject;
-      };
-    };
     header: {
       childImageSharp: {
         fixed: FixedObject;
@@ -99,13 +94,7 @@ const IndexPage: React.FC<IndexProps> = props => {
             <SiteNav isHome />
             <SiteHeaderContent className="site-header-conent">
               <SiteTitle className="site-title">
-                {props.data.logo ? (
-                  <img
-                    style={{ maxHeight: '55px' }}
-                    src={props.data.logo.childImageSharp.fixed.src}
-                    alt={config.title}
-                  />
-                ) : (
+                {(
                   config.title
                 )}
               </SiteTitle>
@@ -137,15 +126,6 @@ const IndexPage: React.FC<IndexProps> = props => {
 
 export const pageQuery = graphql`
   query blogPageQuery($skip: Int!, $limit: Int!) {
-    logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fixed {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
     header: file(relativePath: { eq: "img/moma/diffuse.jpg" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.

@@ -21,11 +21,6 @@ interface PageTemplateProps {
     slug: string;
   };
   data: {
-    logo: {
-      childImageSharp: {
-        fixed: any;
-      };
-    };
     markdownRemark: {
       html: string;
       htmlAst: any;
@@ -233,13 +228,6 @@ const PostFullImage = styled.figure`
 
 export const query = graphql`
   query($slug: String) {
-    logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
-      childImageSharp {
-        fixed {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       htmlAst

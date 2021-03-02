@@ -75,13 +75,7 @@ const MainPage: React.FC<IndexTemplateProps> = props => {
             <SiteNav isHome />
             <SiteHeaderContent className="site-header-conent">
               <SiteTitle className="site-title">
-                {props.data.logo ? (
-                  <img
-                    style={{ maxHeight: '55px' }}
-                    src={props.data.logo.childImageSharp.fixed.src}
-                    alt={config.title}
-                  />
-                ) : (
+                {(
                   config.title
                 )}
               </SiteTitle>
@@ -122,15 +116,6 @@ const MainPage: React.FC<IndexTemplateProps> = props => {
 
 export const pageQuery = graphql`
   query {
-    logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fixed {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
     header: file(relativePath: { eq: "img/moma/diffuse.jpg" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.

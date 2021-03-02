@@ -9,7 +9,6 @@ import { colors } from '../../styles/colors';
 import { SocialLink } from '../../styles/shared';
 import config from '../../website-config';
 import { Twitter } from '../icons/twitter';
-import { SiteNavLogo } from './SiteNavLogo';
 
 interface SiteNavProps {
   isHome?: boolean;
@@ -75,9 +74,11 @@ class SiteNav extends React.Component<SiteNavProps, SiteNavState> {
     return (
       <nav css={SiteNavStyles}>
         <SiteNavLeft className="site-nav-left">
-          {<SiteNavLogo />}
           <SiteNavContent css={[this.state.showTitle ? HideNav : '']}>
             <ul css={NavStyles} role="menu">
+              <li role="menuitem">
+                <Link className="site-nav-logo" to="/">{config.title}</Link>
+              </li>
               <li role="menuitem">
                 <Link to="/posts">Posts</Link>
               </li>

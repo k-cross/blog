@@ -1,11 +1,9 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { Global, css } from '@emotion/core';
 import { lighten } from 'polished';
 
 // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
 // @ts-ignore
-import favicon from '../../src/favicon.ico';
 import { colors } from '../styles/colors';
 
 interface IndexProps {
@@ -15,9 +13,6 @@ interface IndexProps {
 const IndexLayout: React.FC<IndexProps> = props => {
   return (
     <div className={props.className}>
-      <Helmet>
-        <link rel="icon" href={favicon} type="image/x-icon" />
-      </Helmet>
       <Global
         styles={css`
           html,
