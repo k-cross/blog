@@ -26,7 +26,7 @@ import config from '../website-config';
 import 'katex/dist/katex.min.css';
 
 const MainPage: React.FC<IndexTemplateProps> = props => {
-  const { width, height } = props.data.header.childImageSharp.fixed;
+  const { width, height } = props.data.header.childImageSharp.gatsbyImageData;
 
   return (
     <IndexLayout>
@@ -41,7 +41,7 @@ const MainPage: React.FC<IndexTemplateProps> = props => {
         <meta property="og:url" content={config.siteUrl} />
         <meta
           property="og:image"
-          content={`${config.siteUrl}${props.data.header.childImageSharp.fixed.src}`}
+          content={`${config.siteUrl}${props.data.header.childImageSharp.gatsbyImageData.src}`}
         />
         {config.googleSiteVerification && (
           <meta name="google-site-verification" content={config.googleSiteVerification} />
@@ -52,7 +52,7 @@ const MainPage: React.FC<IndexTemplateProps> = props => {
         <meta name="twitter:url" content={config.siteUrl} />
         <meta
           name="twitter:image"
-          content={`${config.siteUrl}${props.data.header.childImageSharp.fixed.src}`}
+          content={`${config.siteUrl}${props.data.header.childImageSharp.gatsbyImageData.src}`}
         />
         {config.twitter && (
           <meta
@@ -68,7 +68,7 @@ const MainPage: React.FC<IndexTemplateProps> = props => {
           css={[outer, SiteHeader, SiteHeaderStyles]}
           className="site-header-background"
           style={{
-            backgroundImage: `url('${props.data.header.childImageSharp.fixed.src}')`,
+            backgroundImage: `url('${props.data.header.childImageSharp.gatsbyImageData.src}')`,
           }}
         >
           <div css={inner}>
@@ -114,41 +114,36 @@ const MainPage: React.FC<IndexTemplateProps> = props => {
   );
 };
 
-export const pageQuery = graphql`
-  query {
-    header: file(relativePath: { eq: "img/moma/diffuse.jpg" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fixed(width: 2000, quality: 100) {
-          ...GatsbyImageSharpFixed
-        }
-      }
+export const pageQuery = graphql`{
+  header: file(relativePath: {eq: "img/moma/diffuse.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(width: 2000, quality: 100, layout: FIXED)
     }
-    allMarkdownRemark(
-      limit: 1
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { draft: { ne: true }, layout: { eq: "post" } } }
-    ) {
-      edges {
-        node {
-          timeToRead
-          frontmatter {
-            title
-            date
-            tags
-          }
-          excerpt
-          html
-          htmlAst
-          fields {
-            layout
-            slug
-          }
+  }
+  allMarkdownRemark(
+    limit: 1
+    sort: {fields: [frontmatter___date], order: DESC}
+    filter: {frontmatter: {draft: {ne: true}, layout: {eq: "post"}}}
+  ) {
+    edges {
+      node {
+        timeToRead
+        frontmatter {
+          title
+          date
+          tags
+        }
+        excerpt
+        html
+        htmlAst
+        fields {
+          layout
+          slug
         }
       }
     }
   }
+}
 `;
 
 export default MainPage;

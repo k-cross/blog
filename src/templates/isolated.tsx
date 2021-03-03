@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby';
-import Img, { FluidObject } from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import { setLightness } from 'polished';
 import React from 'react';
 import { Helmet } from 'react-helmet';
@@ -57,8 +57,8 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
   let width = '';
   let height = '';
   if (post.frontmatter.picture?.childImageSharp) {
-    width = post.frontmatter.picture.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
-    height = String(Number(width) / post.frontmatter.picture.childImageSharp.fluid.aspectRatio);
+    width = post.frontmatter.picture.childImageSharp.gatsbyImageData.sizes.split(', ')[1].split('px')[0];
+    height = String(Number(width) / post.frontmatter.picture.childImageSharp.gatsbyImageData.aspectRatio);
   }
 
   return (
@@ -74,7 +74,7 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
         {post.frontmatter.picture?.childImageSharp && (
           <meta
             property="og:image"
-            content={`${config.siteUrl}${post.frontmatter.picture.childImageSharp.fluid.src}`}
+            content={`${config.siteUrl}${post.frontmatter.picture.childImageSharp.gatsbyImageData.src}`}
           />
         )}
 
@@ -84,7 +84,7 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
         {post.frontmatter.picture?.childImageSharp && (
           <meta
             name="twitter:image"
-            content={`${config.siteUrl}${post.frontmatter.picture.childImageSharp.fluid.src}`}
+            content={`${config.siteUrl}${post.frontmatter.picture.childImageSharp.gatsbyImageData.src}`}
           />
         )}
         {config.twitter && (
@@ -119,11 +119,10 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
 
               {post.frontmatter.picture?.childImageSharp && (
                 <PostFullImage>
-                  <Img
+                  <GatsbyImage
+                    image={post.frontmatter.picture.childImageSharp.gatsbyImageData}
                     style={{ height: '100%' }}
-                    fluid={post.frontmatter.picture.childImageSharp.fluid}
-                    alt={post.frontmatter.title}
-                  />
+                    alt={post.frontmatter.title} />
                 </PostFullImage>
               )}
               <PostContent htmlAst={post.htmlAst} />
@@ -226,24 +225,21 @@ const PostFullImage = styled.figure`
   }
 `;
 
-export const query = graphql`
-  query($slug: String) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      htmlAst
-      timeToRead
-      frontmatter {
-        title
-        picture {
-          childImageSharp {
-            fluid(maxWidth: 3720) {
-              ...GatsbyImageSharpFluid
-            }
-          }
+export const query = graphql`query ($slug: String) {
+  markdownRemark(fields: {slug: {eq: $slug}}) {
+    html
+    htmlAst
+    timeToRead
+    frontmatter {
+      title
+      picture {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
     }
   }
+}
 `;
 
 export default PageTemplate;

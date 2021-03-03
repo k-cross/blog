@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby';
-import { FixedObject } from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
@@ -33,7 +33,7 @@ export interface IndexProps {
   data: {
     header: {
       childImageSharp: {
-        fixed: FixedObject;
+        fixed: GatsbyImage;
       };
     };
     allMarkdownRemark: {
@@ -45,7 +45,7 @@ export interface IndexProps {
 }
 
 const IndexPage: React.FC<IndexProps> = props => {
-  const { width, height } = props.data.header.childImageSharp.fixed;
+  const { width, height } = props.data.header.childImageSharp.gatsbyImageData;
 
   return (
     <IndexLayout css={HomePosts}>
@@ -60,7 +60,7 @@ const IndexPage: React.FC<IndexProps> = props => {
         <meta property="og:url" content={config.siteUrl} />
         <meta
           property="og:image"
-          content={`${config.siteUrl}${props.data.header.childImageSharp.fixed.src}`}
+          content={`${config.siteUrl}${props.data.header.childImageSharp.gatsbyImageData.src}`}
         />
         {config.googleSiteVerification && (
           <meta name="google-site-verification" content={config.googleSiteVerification} />
@@ -71,7 +71,7 @@ const IndexPage: React.FC<IndexProps> = props => {
         <meta name="twitter:url" content={config.siteUrl} />
         <meta
           name="twitter:image"
-          content={`${config.siteUrl}${props.data.header.childImageSharp.fixed.src}`}
+          content={`${config.siteUrl}${props.data.header.childImageSharp.gatsbyImageData.src}`}
         />
         {config.twitter && (
           <meta
@@ -87,7 +87,7 @@ const IndexPage: React.FC<IndexProps> = props => {
           css={[outer, SiteHeader, SiteHeaderStyles]}
           className="site-header-background"
           style={{
-            backgroundImage: `url('${props.data.header.childImageSharp.fixed.src}')`,
+            backgroundImage: `url('${props.data.header.childImageSharp.gatsbyImageData.src}')`,
           }}
         >
           <div css={inner}>
@@ -124,61 +124,54 @@ const IndexPage: React.FC<IndexProps> = props => {
   );
 };
 
-export const pageQuery = graphql`
-  query blogPageQuery($skip: Int!, $limit: Int!) {
-    header: file(relativePath: { eq: "img/moma/diffuse.jpg" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fixed(width: 2000, quality: 100) {
-          ...GatsbyImageSharpFixed
-        }
-      }
+export const pageQuery = graphql`query blogPageQuery($skip: Int!, $limit: Int!) {
+  header: file(relativePath: {eq: "img/moma/diffuse.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(width: 2000, quality: 100, layout: FIXED)
     }
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { draft: { ne: true }, layout: { eq: "post" } } }
-      limit: $limit
-      skip: $skip
-    ) {
-      edges {
-        node {
-          timeToRead
-          frontmatter {
-            title
-            date
-            tags
-            draft
-            excerpt
-            picture {
-              childImageSharp {
-                fluid(maxWidth: 3720) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
+  }
+  allMarkdownRemark(
+    sort: {fields: [frontmatter___date], order: DESC}
+    filter: {frontmatter: {draft: {ne: true}, layout: {eq: "post"}}}
+    limit: $limit
+    skip: $skip
+  ) {
+    edges {
+      node {
+        timeToRead
+        frontmatter {
+          title
+          date
+          tags
+          draft
+          excerpt
+          picture {
+            childImageSharp {
+              gatsbyImageData(layout: FULL_WIDTH)
             }
-            author {
-              id
-              bio
-              avatar {
-                children {
-                  ... on ImageSharp {
-                    fluid(quality: 100, srcSetBreakpoints: [40, 80, 120]) {
-                      ...GatsbyImageSharpFluid
-                    }
+          }
+          author {
+            id
+            bio
+            avatar {
+              children {
+                ... on ImageSharp {
+                  fluid(quality: 100, srcSetBreakpoints: [40, 80, 120]) {
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }
             }
           }
-          excerpt
-          fields {
-            slug
-          }
+        }
+        excerpt
+        fields {
+          slug
         }
       }
     }
   }
+}
 `;
 
 const HomePosts = css`
