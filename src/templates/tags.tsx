@@ -26,7 +26,7 @@ import { Helmet } from 'react-helmet';
 import config from '../website-config';
 
 interface TagTemplateProps {
-  pathContext: {
+  pageContext: {
     slug: string;
   };
   pageContext: {
@@ -73,10 +73,10 @@ const Tags: React.FC<TagTemplateProps> = props => {
         <meta property="og:site_name" content={config.title} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={`${tag} - ${config.title}`} />
-        <meta property="og:url" content={config.siteUrl + props.pathContext.slug} />
+        <meta property="og:url" content={config.siteUrl + props.pageContext.slug} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${tag} - ${config.title}`} />
-        <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
+        <meta name="twitter:url" content={config.siteUrl + props.pageContext.slug} />
         {config.twitter && (
           <meta
             name="twitter:site"

@@ -33,7 +33,7 @@ export interface Author {
 }
 
 interface PageTemplateProps {
-  pathContext: {
+  pageContext: {
     slug: string;
   };
   data: {
@@ -130,7 +130,7 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.frontmatter.title} />
         <meta property="og:description" content={post.frontmatter.excerpt || post.excerpt} />
-        <meta property="og:url" content={config.siteUrl + props.pathContext.slug} />
+        <meta property="og:url" content={config.siteUrl + props.pageContext.slug} />
         {post.frontmatter.picture?.childImageSharp && (
           <meta
             property="og:image"
@@ -147,7 +147,7 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.frontmatter.title} />
         <meta name="twitter:description" content={post.frontmatter.excerpt || post.excerpt} />
-        <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
+        <meta name="twitter:url" content={config.siteUrl + props.pageContext.slug} />
         {post.frontmatter.picture?.childImageSharp && (
           <meta
             name="twitter:image"
@@ -234,7 +234,7 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
         </main>
 
         <ReadNext
-          currentPageSlug={props.pathContext.slug}
+          currentPageSlug={props.pageContext.slug}
           tags={post.frontmatter.tags}
           relatedPosts={props.data.relatedPosts}
           pageContext={props.pageContext}
