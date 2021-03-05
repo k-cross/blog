@@ -23,7 +23,7 @@ export interface WebsiteConfig {
 
 const config: WebsiteConfig = {
   title: 'quasarken',
-  description: 'Treating software like Pandora\'s box',
+  description: 'a blog mostly about software engineering',
   coverImage: 'img/blog-cover.png',
   lang: 'en',
   siteUrl: 'https://k-cross.github.io',
