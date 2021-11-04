@@ -4,7 +4,7 @@ import { setLightness } from 'polished';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { Footer } from '../components/Footer';

@@ -5,6 +5,7 @@
 # Build directory
 public/
 .yarn
+.idea
 
 # Gatsby cache
 .cache/
