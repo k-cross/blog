@@ -29,7 +29,7 @@ interface PageTemplateProps {
         title: string;
         picture: {
           childImageSharp: {
-            fluid: any;
+            gatsbyImageData: any;
           };
         };
       };
@@ -45,7 +45,7 @@ export interface PageContext {
   frontmatter: {
     picture: {
       childImageSharp: {
-        fluid: FluidObject;
+        gatsbyImageData(layout: CONSTRAINED)
       };
     };
     title: string;
@@ -57,7 +57,7 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
   let width = '';
   let height = '';
   if (post.frontmatter.picture?.childImageSharp) {
-    width = post.frontmatter.picture.childImageSharp.gatsbyImageData.sizes.split(', ')[1].split('px')[0];
+    width = post.frontmatter.picture.childImageSharp.gatsbyImageData.width;
     height = String(Number(width) / post.frontmatter.picture.childImageSharp.gatsbyImageData.aspectRatio);
   }
 

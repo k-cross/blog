@@ -17,6 +17,11 @@ module.exports = {
       options: {
         defaultQuality: 75,
         stripMetadata: true,
+        defaults: {
+          formats: ['auto', 'webp'],
+          quality: 75,
+          breakpoints: [750, 1080, 1366, 1920],
+        },
       },
     },
     {

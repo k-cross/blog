@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { graphql, Link } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image';
 import * as _ from 'lodash';
 import { lighten, setLightness } from 'polished';
 import React from 'react';
@@ -26,14 +26,14 @@ export interface Author {
   yamlId: string;
   bio: string;
   avatar: {
-    children: Array<{
-      fluid: FluidObject;
-    }>;
+    children: Array<{ gatsbyImageData: any }>;
   };
 }
 
 interface PageTemplateProps {
   pageContext: {
+    prev: PageContext;
+    next: PageContext;
     slug: string;
   };
   data: {
@@ -49,7 +49,7 @@ interface PageTemplateProps {
         modified: string;
         picture: {
           childImageSharp: {
-            fluid: any;
+            gatsbyImageData: any;
           };
         };
         excerpt: string;
@@ -74,10 +74,6 @@ interface PageTemplateProps {
       }>;
     };
   };
-  pageContext: {
-    prev: PageContext;
-    next: PageContext;
-  };
 }
 
 export interface PageContext {
@@ -89,7 +85,7 @@ export interface PageContext {
   frontmatter: {
     picture: {
       childImageSharp: {
-        fluid: FluidObject;
+        gatsbyImageData: any;
       };
     };
     excerpt: string;
@@ -107,8 +103,10 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
   let width = '';
   let height = '';
   if (post.frontmatter.picture?.childImageSharp) {
-    width = post.frontmatter.picture.childImageSharp.gatsbyImageData.sizes.split(', ')[1].split('px')[0];
-    height = String(Number(width) / post.frontmatter.picture.childImageSharp.gatsbyImageData.aspectRatio);
+    width = post.frontmatter.picture.childImageSharp.gatsbyImageData.width;
+    height = String(
+      Number(width) / post.frontmatter.picture.childImageSharp.gatsbyImageData.aspectRatio,
+    );
   }
 
   const date = new Date(post.frontmatter.date);
@@ -183,7 +181,6 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
         </header>
         <main id="site-main" className="site-main" css={[SiteMain, outer]}>
           <div css={inner}>
-            {/* TODO: no-image css tag? */}
             <article css={[PostFull, !post.frontmatter.picture && NoImage]}>
               <PostFullHeader className="post-full-header">
                 <PostFullTags className="post-full-tags">
@@ -225,7 +222,8 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
                   <GatsbyImage
                     image={post.frontmatter.picture.childImageSharp.gatsbyImageData}
                     style={{ height: '100%' }}
-                    alt={post.frontmatter.title} />
+                    alt={post.frontmatter.title}
+                  />
                 </PostFullImage>
               )}
               <PostContent htmlAst={post.htmlAst} />
@@ -432,62 +430,61 @@ const PostFullImage = styled.figure`
   }
 `;
 
-export const query = graphql`query ($slug: String, $primaryTag: String) {
-  markdownRemark(fields: {slug: {eq: $slug}}) {
-    html
-    htmlAst
-    excerpt
-    timeToRead
-    frontmatter {
-      title
-      userDate: date(formatString: "D MMMM YYYY")
-      date
-      modified
-      tags
+export const query = graphql`
+  query ($slug: String, $primaryTag: String) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
+      html
+      htmlAst
       excerpt
-      picture {
-        childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
+      timeToRead
+      frontmatter {
+        title
+        userDate: date(formatString: "D MMMM YYYY")
+        date
+        modified
+        tags
+        excerpt
+        picture {
+          childImageSharp {
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
         }
-      }
-      author {
-        yamlId
-        bio
-        avatar {
-          children {
-            ... on ImageSharp {
-              fluid(quality: 100, srcSetBreakpoints: [40, 80, 120]) {
-                ...GatsbyImageSharpFluid
+        author {
+          yamlId
+          bio
+          avatar {
+            children {
+              ... on ImageSharp {
+                gatsbyImageData(layout: CONSTRAINED)
               }
             }
           }
         }
       }
     }
-  }
-  relatedPosts: allMarkdownRemark(
-    filter: {frontmatter: {tags: {in: [$primaryTag]}, draft: {ne: true}}}
-    limit: 5
-    sort: {fields: [frontmatter___date], order: DESC}
-  ) {
-    totalCount
-    edges {
-      node {
-        id
-        timeToRead
-        excerpt
-        frontmatter {
-          title
-          date
-          modified
-        }
-        fields {
-          slug
+    relatedPosts: allMarkdownRemark(
+      filter: { frontmatter: { tags: { in: [$primaryTag] }, draft: { ne: true } } }
+      limit: 5
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          timeToRead
+          excerpt
+          frontmatter {
+            title
+            date
+            modified
+          }
+          fields {
+            slug
+          }
         }
       }
     }
   }
-}
 `;
 
 export default PageTemplate;

@@ -156,9 +156,7 @@ export const pageQuery = graphql`query blogPageQuery($skip: Int!, $limit: Int!) 
             avatar {
               children {
                 ... on ImageSharp {
-                  fluid(quality: 100, srcSetBreakpoints: [40, 80, 120]) {
-                    ...GatsbyImageSharpFluid
-                  }
+                  gatsbyImageData(layout: CONSTRAINED)
                 }
               }
             }
