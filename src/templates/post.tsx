@@ -23,7 +23,7 @@ import { AuthorList } from '../components/AuthorList';
 import 'katex/dist/katex.min.css';
 
 export interface Author {
-  id: string;
+  yamlId: string;
   bio: string;
   avatar: {
     children: Array<{
@@ -155,7 +155,7 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
           />
         )}
         <meta name="twitter:label1" content="Written by" />
-        <meta name="twitter:data1" content={post.frontmatter.author[0].id} />
+        <meta name="twitter:data1" content={post.frontmatter.author[0].yamlId} />
         <meta name="twitter:label2" content="Filed under" />
         {post.frontmatter.tags && <meta name="twitter:data2" content={post.frontmatter.tags[0]} />}
         {config.twitter && (
@@ -202,7 +202,7 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
                     <AuthorList authors={post.frontmatter.author} tooltip="large" />
                     <section className="post-full-byline-meta">
                       <h4 className="author-name">
-                        {post.frontmatter.author.map(author => author.id)}
+                        {post.frontmatter.author.map(author => author.yamlId)}
                       </h4>
                       <div className="byline-meta-content">
                         <time className="byline-meta-date" dateTime={datetime}>
@@ -451,7 +451,7 @@ export const query = graphql`query ($slug: String, $primaryTag: String) {
         }
       }
       author {
-        id
+        yamlId
         bio
         avatar {
           children {

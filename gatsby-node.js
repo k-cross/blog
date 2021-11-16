@@ -69,7 +69,7 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
           author {
-            id
+            yamlId
             bio
             avatar {
               children {
@@ -96,7 +96,7 @@ exports.createPages = async ({ graphql, actions }) => {
   allAuthorYaml {
     edges {
       node {
-        id
+        yamlId
       }
     }
   }

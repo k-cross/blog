@@ -13,7 +13,7 @@ export const AuthorListItem: React.FC<AuthorListItemProps> = props => {
   return (
     <AuthorListItemLi className="author-list-item">
       {props.tooltip === 'small' && (
-        <AuthorNameTooltip className="author-name-tooltip">{props.author.id}</AuthorNameTooltip>
+        <AuthorNameTooltip className="author-name-tooltip">{props.author.yamlId}</AuthorNameTooltip>
       )}
     </AuthorListItemLi>
   );

@@ -8,7 +8,7 @@ module.exports = {
     siteUrl: 'https://k-cross.github.io', // full path to blog - no ending slash
   },
   mapping: {
-    'MarkdownRemark.frontmatter.author': 'AuthorYaml',
+    'MarkdownRemark.frontmatter.author': 'AuthorYaml.yamlId',
   },
   plugins: [
     'gatsby-plugin-sitemap',
