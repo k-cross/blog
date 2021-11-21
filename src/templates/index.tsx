@@ -1,5 +1,6 @@
 import { graphql } from 'gatsby';
 import React from 'react';
+import { getSrc } from 'gatsby-plugin-image';
 import { Helmet } from 'react-helmet';
 
 import { css } from '@emotion/react';
@@ -45,6 +46,7 @@ export interface IndexProps {
 
 const IndexPage: React.FC<IndexProps> = props => {
   const { width, height } = props.data.header.childImageSharp.gatsbyImageData;
+  const imgPath = getSrc(props.data.header);
 
   return (
     <IndexLayout css={HomePosts}>
@@ -57,10 +59,7 @@ const IndexPage: React.FC<IndexProps> = props => {
         <meta property="og:title" content={config.title} />
         <meta property="og:description" content={config.description} />
         <meta property="og:url" content={config.siteUrl} />
-        <meta
-          property="og:image"
-          content={`${config.siteUrl}${props.data.header.childImageSharp.gatsbyImageData.src}`}
-        />
+        <meta property="og:image" content={imgPath} />
         {config.googleSiteVerification && (
           <meta name="google-site-verification" content={config.googleSiteVerification} />
         )}
@@ -68,10 +67,7 @@ const IndexPage: React.FC<IndexProps> = props => {
         <meta name="twitter:title" content={config.title} />
         <meta name="twitter:description" content={config.description} />
         <meta name="twitter:url" content={config.siteUrl} />
-        <meta
-          name="twitter:image"
-          content={`${config.siteUrl}${props.data.header.childImageSharp.gatsbyImageData.src}`}
-        />
+        <meta name="twitter:image" content={imgPath} />
         {config.twitter && (
           <meta
             name="twitter:site"
@@ -86,17 +82,13 @@ const IndexPage: React.FC<IndexProps> = props => {
           css={[outer, SiteHeader, SiteHeaderStyles]}
           className="site-header-background"
           style={{
-            backgroundImage: `url('${props.data.header.childImageSharp.gatsbyImageData.src}')`,
+            backgroundImage: `url('${imgPath}')`,
           }}
         >
           <div css={inner}>
             <SiteNav isHome />
             <SiteHeaderContent className="site-header-conent">
-              <SiteTitle className="site-title">
-                {(
-                  config.title
-                )}
-              </SiteTitle>
+              <SiteTitle className="site-title">{config.title}</SiteTitle>
               <SiteDescription>{config.description}</SiteDescription>
             </SiteHeaderContent>
           </div>
@@ -123,52 +115,53 @@ const IndexPage: React.FC<IndexProps> = props => {
   );
 };
 
-export const pageQuery = graphql`query blogPageQuery($skip: Int!, $limit: Int!) {
-  header: file(relativePath: {eq: "img/moma/diffuse.jpg"}) {
-    childImageSharp {
-      gatsbyImageData(width: 2000, quality: 100, layout: FIXED)
+export const pageQuery = graphql`
+  query blogPageQuery($skip: Int!, $limit: Int!) {
+    header: file(relativePath: { eq: "img/moma/diffuse.jpg" }) {
+      childImageSharp {
+        gatsbyImageData(width: 2000, quality: 100, layout: FIXED)
+      }
     }
-  }
-  allMarkdownRemark(
-    sort: {fields: [frontmatter___date], order: DESC}
-    filter: {frontmatter: {draft: {ne: true}, layout: {eq: "post"}}}
-    limit: $limit
-    skip: $skip
-  ) {
-    edges {
-      node {
-        timeToRead
-        frontmatter {
-          title
-          date
-          tags
-          draft
-          excerpt
-          picture {
-            childImageSharp {
-              gatsbyImageData(layout: FULL_WIDTH)
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { draft: { ne: true }, layout: { eq: "post" } } }
+      limit: $limit
+      skip: $skip
+    ) {
+      edges {
+        node {
+          timeToRead
+          frontmatter {
+            title
+            date
+            tags
+            draft
+            excerpt
+            picture {
+              childImageSharp {
+                gatsbyImageData(layout: FULL_WIDTH)
+              }
             }
-          }
-          author {
-            id
-            bio
-            avatar {
-              children {
-                ... on ImageSharp {
-                  gatsbyImageData(layout: CONSTRAINED)
+            author {
+              id
+              bio
+              avatar {
+                children {
+                  ... on ImageSharp {
+                    gatsbyImageData(layout: CONSTRAINED)
+                  }
                 }
               }
             }
           }
-        }
-        excerpt
-        fields {
-          slug
+          excerpt
+          fields {
+            slug
+          }
         }
       }
     }
   }
-}
 `;
 
 const HomePosts = css`
