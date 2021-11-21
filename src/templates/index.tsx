@@ -1,5 +1,4 @@
 import { graphql } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
@@ -33,7 +32,7 @@ export interface IndexProps {
   data: {
     header: {
       childImageSharp: {
-        fixed: GatsbyImage;
+        gatsbyImageData: any;
       };
     };
     allMarkdownRemark: {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { Helmet } from 'react-helmet';
+import { getSrc } from 'gatsby-plugin-image';
 import * as _ from 'lodash';
 
 import SiteNav from '../components/header/SiteNav';
@@ -27,6 +28,7 @@ import 'katex/dist/katex.min.css';
 
 const MainPage: React.FC<IndexTemplateProps> = props => {
   const { width, height } = props.data.header.childImageSharp.gatsbyImageData;
+  const imgPath = getSrc(props.data.header);
 
   return (
     <IndexLayout>
@@ -39,10 +41,7 @@ const MainPage: React.FC<IndexTemplateProps> = props => {
         <meta property="og:title" content={config.title} />
         <meta property="og:description" content={config.description} />
         <meta property="og:url" content={config.siteUrl} />
-        <meta
-          property="og:image"
-          content={`${config.siteUrl}${props.data.header.childImageSharp.gatsbyImageData.src}`}
-        />
+        <meta property="og:image" content={imgPath} />
         {config.googleSiteVerification && (
           <meta name="google-site-verification" content={config.googleSiteVerification} />
         )}
@@ -50,10 +49,7 @@ const MainPage: React.FC<IndexTemplateProps> = props => {
         <meta name="twitter:title" content={config.title} />
         <meta name="twitter:description" content={config.description} />
         <meta name="twitter:url" content={config.siteUrl} />
-        <meta
-          name="twitter:image"
-          content={`${config.siteUrl}${props.data.header.childImageSharp.gatsbyImageData.src}`}
-        />
+        <meta name="twitter:image" content={imgPath} />
         {config.twitter && (
           <meta
             name="twitter:site"
@@ -68,17 +64,13 @@ const MainPage: React.FC<IndexTemplateProps> = props => {
           css={[outer, SiteHeader, SiteHeaderStyles]}
           className="site-header-background"
           style={{
-            backgroundImage: `url('${props.data.header.childImageSharp.gatsbyImageData.src}')`,
+            backgroundImage: `url('${imgPath}')`,
           }}
         >
           <div css={inner}>
             <SiteNav isHome />
             <SiteHeaderContent className="site-header-conent">
-              <SiteTitle className="site-title">
-                {(
-                  config.title
-                )}
-              </SiteTitle>
+              <SiteTitle className="site-title">{config.title}</SiteTitle>
               <SiteDescription>{config.description}</SiteDescription>
             </SiteHeaderContent>
           </div>
@@ -114,36 +106,37 @@ const MainPage: React.FC<IndexTemplateProps> = props => {
   );
 };
 
-export const pageQuery = graphql`{
-  header: file(relativePath: {eq: "img/moma/diffuse.jpg"}) {
-    childImageSharp {
-      gatsbyImageData(width: 2000, quality: 100, layout: FIXED)
+export const pageQuery = graphql`
+  {
+    header: file(relativePath: { eq: "img/moma/diffuse.jpg" }) {
+      childImageSharp {
+        gatsbyImageData(width: 2000, quality: 100, layout: FIXED)
+      }
     }
-  }
-  allMarkdownRemark(
-    limit: 1
-    sort: {fields: [frontmatter___date], order: DESC}
-    filter: {frontmatter: {draft: {ne: true}, layout: {eq: "post"}}}
-  ) {
-    edges {
-      node {
-        timeToRead
-        frontmatter {
-          title
-          date
-          tags
-        }
-        excerpt
-        html
-        htmlAst
-        fields {
-          layout
-          slug
+    allMarkdownRemark(
+      limit: 1
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { draft: { ne: true }, layout: { eq: "post" } } }
+    ) {
+      edges {
+        node {
+          timeToRead
+          frontmatter {
+            title
+            date
+            tags
+          }
+          excerpt
+          html
+          htmlAst
+          fields {
+            layout
+            slug
+          }
         }
       }
     }
   }
-}
 `;
 
 export default MainPage;
