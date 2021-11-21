@@ -47,61 +47,56 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const result = await graphql(`{
-  allMarkdownRemark(
-    limit: 2000
-    sort: {fields: [frontmatter___date], order: ASC}
-    filter: {frontmatter: {draft: {ne: true}}}
-  ) {
-    edges {
-      node {
-        excerpt
-        timeToRead
-        frontmatter {
-          title
-          tags
-          date
-          draft
-          excerpt
-          picture {
-            childImageSharp {
-              gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
-            }
-          }
-          author {
-            yamlId
-            bio
-            avatar {
-              children {
-                ... on ImageSharp {
-                  fluid(quality: 100) {
-                    aspectRatio
-                    base64
-                    sizes
-                    src
-                    srcSet
+  const result = await graphql(`
+    {
+      allMarkdownRemark(
+        limit: 2000
+        sort: { fields: [frontmatter___date], order: ASC }
+        filter: { frontmatter: { draft: { ne: true } } }
+      ) {
+        edges {
+          node {
+            excerpt
+            timeToRead
+            frontmatter {
+              title
+              tags
+              date
+              draft
+              excerpt
+              picture {
+                childImageSharp {
+                  gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+                }
+              }
+              author {
+                yamlId
+                bio
+                avatar {
+                  children {
+                    ... on ImageSharp {
+                      gatsbyImageData(layout: CONSTRAINED)
+                    }
                   }
                 }
               }
             }
+            fields {
+              layout
+              slug
+            }
           }
         }
-        fields {
-          layout
-          slug
+      }
+      allAuthorYaml {
+        edges {
+          node {
+            yamlId
+          }
         }
       }
     }
-  }
-  allAuthorYaml {
-    edges {
-      node {
-        yamlId
-      }
-    }
-  }
-}
-`);
+  `);
 
   if (result.errors) {
     console.error(result.errors);
