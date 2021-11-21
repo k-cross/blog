@@ -1,6 +1,6 @@
 # Blog
 
-A blog built with gatsby using a modified casper theme.
+A blog built with gatsby originally based on the casper theme.
 
 ## How to configure Google Analytics
 
@@ -32,3 +32,12 @@ Edit `gatsby-config.js` and add your tracking ID
 
 In `gatsby-node.js`, edit the `postsPerPage` constant. The default value is
 six posts per page.
+
+## WIP
+
+[*] update to gatsby 4
+[ ] make a11y friendly
+  + color themes should be modified for higher contrast for color blind
+  + tab indexs should be included for all actionable content
+  + aria fields and the accessibility tree modified for better navigation
+  + images should have alt text
