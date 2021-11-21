@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { graphql, Link } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
+import { GatsbyImage, getSrc } from 'gatsby-plugin-image';
 import * as _ from 'lodash';
 import { lighten, setLightness } from 'polished';
 import React from 'react';
@@ -132,7 +132,7 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
         {post.frontmatter.picture?.childImageSharp && (
           <meta
             property="og:image"
-            content={`${config.siteUrl}${post.frontmatter.picture.childImageSharp.gatsbyImageData.src}`}
+            content={`${config.siteUrl}{getSrc(post.frontmatter.picture)}`}
           />
         )}
         <meta property="article:published_time" content={post.frontmatter.date} />
@@ -149,7 +149,7 @@ const PageTemplate: React.FC<PageTemplateProps> = props => {
         {post.frontmatter.picture?.childImageSharp && (
           <meta
             name="twitter:image"
-            content={`${config.siteUrl}${post.frontmatter.picture.childImageSharp.gatsbyImageData.src}`}
+            content={`${config.siteUrl}{getSrc(post.frontmatter.picture)}`}
           />
         )}
         <meta name="twitter:label1" content="Written by" />

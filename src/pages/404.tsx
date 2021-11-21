@@ -76,19 +76,6 @@ export const pageQuery = graphql`{
               gatsbyImageData(layout: FULL_WIDTH)
             }
           }
-          author {
-            id
-            bio
-            avatar {
-              children {
-                ... on ImageSharp {
-                  fluid(quality: 100, srcSetBreakpoints: [40, 80, 120]) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-          }
         }
         excerpt
         fields {

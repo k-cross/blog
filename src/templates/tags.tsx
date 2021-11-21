@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import React from 'react';
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 import { Footer } from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
@@ -28,8 +28,6 @@ import config from '../website-config';
 interface TagTemplateProps {
   pageContext: {
     slug: string;
-  };
-  pageContext: {
     tag: string;
   };
   data: {
@@ -40,7 +38,7 @@ interface TagTemplateProps {
           description: string;
           picture?: {
             childImageSharp: {
-              fluid: GatsbyImage;
+              gatsbyImageData: any;
             };
           };
         };
@@ -85,10 +83,7 @@ const Tags: React.FC<TagTemplateProps> = props => {
         )}
       </Helmet>
       <Wrapper>
-        <header
-          className="site-archive-header"
-          css={[SiteHeader, SiteArchiveHeader]}
-        >
+        <header className="site-archive-header" css={[SiteHeader, SiteArchiveHeader]}>
           <div css={[outer, SiteNavMain]}>
             <div css={inner}>
               <SiteNav isHome={false} />
@@ -132,60 +127,48 @@ const Tags: React.FC<TagTemplateProps> = props => {
 
 export default Tags;
 
-export const pageQuery = graphql`query ($tag: String) {
-  allTagYaml {
-    edges {
-      node {
-        id
-        description
-        picture {
-          childImageSharp {
-            gatsbyImageData(layout: FULL_WIDTH)
-          }
-        }
-      }
-    }
-  }
-  allMarkdownRemark(
-    limit: 2000
-    sort: {fields: [frontmatter___date], order: DESC}
-    filter: {frontmatter: {tags: {in: [$tag]}, draft: {ne: true}}}
-  ) {
-    totalCount
-    edges {
-      node {
-        excerpt
-        timeToRead
-        frontmatter {
-          title
-          excerpt
-          tags
-          date
+export const pageQuery = graphql`
+  query ($tag: String) {
+    allTagYaml {
+      edges {
+        node {
+          id
+          description
           picture {
             childImageSharp {
               gatsbyImageData(layout: FULL_WIDTH)
             }
           }
-          author {
-            id
-            bio
-            avatar {
-              children {
-                ... on ImageSharp {
-                  fluid(quality: 100, srcSetBreakpoints: [40, 80, 120]) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
+        }
+      }
+    }
+    allMarkdownRemark(
+      limit: 2000
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { tags: { in: [$tag] }, draft: { ne: true } } }
+    ) {
+      totalCount
+      edges {
+        node {
+          excerpt
+          timeToRead
+          frontmatter {
+            title
+            excerpt
+            tags
+            date
+            picture {
+              childImageSharp {
+                gatsbyImageData(layout: FULL_WIDTH)
               }
             }
           }
-        }
-        fields {
-          layout
-          slug
+          fields {
+            layout
+            slug
+          }
         }
       }
     }
   }
-}
 `;
