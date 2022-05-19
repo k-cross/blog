@@ -1,13 +1,11 @@
----
-layout: post
-title: 'Abstractions'
-author: [quasarken]
-excerpt: 'Reflecting on "The Art of Destroying Software" by Greg Young'
-tags: ['Opinion', 'Software Engineering']
-date: 2018-07-04T00:06:38-07:00
-modified: 2020-07-16T00:06:38-07:00
-draft: false
----
++++
+title="Abstractions"
+tags=["Opinion", "Software Engineering"]
+date=2018-07-04T00:06:38-07:00
+modified=2020-07-16T00:06:38-07:00
+draft=false
++++
+
 Correct abstractions in programming are hard to make for the future case.
 Often, there is not enough data at the start of a project when the problem space is not well understood.
 This makes development harder due to the volatility of projects, showing that it's unlikely to make meaningful predictions further into the future.

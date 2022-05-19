@@ -1,11 +1,9 @@
----
-layout: isolated
-title: 'About'
-excerpt: 'Who am I?'
-picture: img/moma/abstract_bird.jpg
-date: 2021-01-26T23:49:16-07:00
-draft: false
----
++++
+title = "About"
+excerpt = "Who am I?"
+date = 2021-01-26T23:49:16-07:00
+draft = false
++++
 I am a software engineer researching language and compiler design, operating systems, and distributed algorithms but dabble in a wide range of mathematics, philosophy, and sciences too.
 As a researcher, I am a novice.
 The site's moniker _quasarken_ has been my handle for a long time and is the history behind the name.

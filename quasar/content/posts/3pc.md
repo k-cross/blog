@@ -1,13 +1,10 @@
----
-layout: post
-title: 'Three Phase Commit Data Migrations'
-author: [quasarken]
-excerpt: 'A technique describing zero-downtime data migrations'
-tags: ['Technique', 'Software Engineering']
-date: 2018-12-09T12:35:54-07:00
-modified: 2020-07-16T00:06:38-07:00
-draft: false
----
++++
+title="Three Phase Commit Data Migrations"
+tags=["Technique", "Software Engineering"]
+date=2018-12-09T12:35:54-07:00
+modified=2020-07-16T00:06:38-07:00
+draft=false
++++
 
 Paving a path towards continuous delivery and zero-downtime deployments is a challenging pursuit especially when each project employs its own strategy.
 One generic solution that is at the heart of this article was inspired by the three-phase-commit.
