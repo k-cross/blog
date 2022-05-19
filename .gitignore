@@ -7,8 +7,6 @@ public/
 .yarn
 .idea
 
-themes/
-
 # Gatsby cache
 .cache/
 

@@ -1,0 +1,3 @@
+[submodule "quasar/themes/zerm"]
+	path = quasar/themes/zerm
+	url = https://github.com/k-cross/zerm
