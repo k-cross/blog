@@ -1,13 +1,13 @@
----
-layout: post
-title: 'Pulse Oximeter Monitor Project'
-author: [quasarken]
-tags: ['Project','Software Engineering']
-excerpt: 'Building a monitor for the Masimo RAD8 pulse oximeter'
-date: '2021-03-08T15:11:55.000Z'
-modified: '2021-03-08T15:11:55.000Z'
-draft: false
----
++++
+title = 'Pulse Oximeter Monitor Project'
+tags = ['Project','Software Engineering']
+excerpt = 'Building a monitor for the Masimo RAD8 pulse oximeter'
+date = '2021-03-08T15:11:55.000Z'
+modified = '2021-03-08T15:11:55.000Z'
+math = true
+draft = false
++++
+
 When the doctors left us with a medical device to monitor the blood oxygen levels of my newborn son, the less than desirable interface converted us into zombies.
 Alerts beeped when SPO2 or BPM reached specific thresholds and nothing else.
 The device, the _Masimo RAD8_ contains space to store data except no patient based mechanisms to read the results it collects.

@@ -1,13 +1,12 @@
----
-layout: post
-title: 'Osmosis Driven Development'
-author: [quasarken]
-tags: ['Opinion','Software Engineering']
-excerpt: 'A look at how context drives the engineering process'
-date: 2018-10-29T07:59:41-07:00
-modified: 2020-08-08T00:06:38-07:00
-draft: false
----
++++
+title = 'Osmosis Driven Development'
+tags = ['Opinion','Software Engineering']
+excerpt = 'A look at how context drives the engineering process'
+date = 2018-10-29T07:59:41-07:00
+modified = 2020-08-08T00:06:38-07:00
+draft = false
++++
+
 In a magical world where all tasks are well defined, performing task $$Y$$ or implement feature $$X$$ is a simple matter of doing.
 In this world only the current state of the feature needs to be communicated.
 A product manager informs stakeholders what engineering is capable of based on raw metrics, creating hard deadlines meaningful to clients.

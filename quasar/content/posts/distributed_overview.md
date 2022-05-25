@@ -1,12 +1,10 @@
----
-layout: post
-title: 'Distributed Algorithms: An Introduction'
-author: [quasarken]
-tags: ['Tutorial','Software Engineering']
-excerpt: 'An introduction into the world of distributed computing and its problems'
-date: 2020-07-18T09:20:30-07:00
-draft: true
----
++++
+title = 'Distributed Algorithms: An Introduction'
+tags = ['Tutorial','Software Engineering']
+excerpt = 'An introduction into the world of distributed computing and its problems'
+date = 2020-07-18T09:20:30-07:00
+draft = true
++++
 
 The goal here is to give an overview of common problems in the distributed computing space along with some common names.
 Each problem described will have a follow up article that goes into a more in-depth study of its technical solutions.

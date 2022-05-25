@@ -1,9 +1,9 @@
 +++
-title="Abstractions"
-tags=["Opinion", "Software Engineering"]
-date=2018-07-04T00:06:38-07:00
-modified=2020-07-16T00:06:38-07:00
-draft=false
+title = "Abstractions"
+tags = ["Opinion", "Software Engineering"]
+date = 2018-07-04T00:06:38-07:00
+modified = 2020-07-16T00:06:38-07:00
+draft = false
 +++
 
 Correct abstractions in programming are hard to make for the future case.
@@ -73,7 +73,7 @@ Sometimes it's warranted, sometimes it's not.
 While it's a good idea to think about current use cases, obvious future cases like extending an API, should remain flexible enough to not have to be rewritten every time a feature is requested.
 
 At the end of the day,
-```git
+```
 83 files changed, 1716 insertions(+), 19478 deletions(-)
 ```
 if this doesn't put a smile on your face, you're probably a masochist.
