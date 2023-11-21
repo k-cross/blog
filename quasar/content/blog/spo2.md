@@ -1,11 +1,24 @@
 +++
-title = 'Pulse Oximeter Monitor Project'
-tags = ['Project','Software Engineering']
-excerpt = 'Building a monitor for the Masimo RAD8 pulse oximeter'
-date = '2021-03-08T15:11:55.000Z'
-modified = '2021-03-08T15:11:55.000Z'
-math = true
+title = "Pulse Oximeter Monitor Project"
+excerpt = "Building a monitor for the Masimo RAD8 pulse oximeter"
+date = 2021-03-08
+updated = 2021-03-08
 draft = false
+
+[taxonomies]
+categories = ["Engineering"]
+tags = ["project","engineering"]
+
+[extra]
+lang = "en"
+toc = true
+comment = true
+copy = true
+math = true
+mermaid = false
+outdate_alert = false
+display_tags = true
+truncate_summary = false
 +++
 
 When the doctors left us with a medical device to monitor the blood oxygen levels of my newborn son, the less than desirable interface converted us into zombies.
@@ -79,7 +92,7 @@ Checking the database timestamps, the _reading rate_ was actually $\frac{1_{read
 It was a lot of fun to discover and tell the pulmonary doctors the wrong results for the first two days because of bad documentation 🤦🏻‍♂️.
 There were other issues that were more pressing at the time which made me realize the incorrect calculation later than I would have liked.
 You might be wondering, was it the polling rate?
-No, the serial device is immediately read and asked for more information after it returns with a result, timing out at $$5_s$$ for a reading.
+No, the serial device is immediately read and asked for more information after it returns with a result, timing out at $5_s$ for a reading.
 The last bit of proprietary fun came from the information display and error codes.
 These were bit masks that were represented in ASCII as hexadecimal bit-masks.
 I copied the common ones from a python project which was a great help in the creation of this application.

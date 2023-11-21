@@ -1,9 +1,24 @@
 +++
 title = "Abstractions"
-tags = ["Opinion", "Software Engineering"]
-date = 2018-07-04T00:06:38-07:00
-modified = 2020-07-16T00:06:38-07:00
+date = 2018-07-04
+updated = 2020-07-16
 draft = false
+
+[taxonomies]
+categories = ["Engineering"]
+tags = ["engineering"]
+
+[extra]
+lang = "en"
+toc = true
+comment = true
+copy = true
+math = false
+mermaid = false
+outdate_alert = false
+outdate_alert_days = 120
+display_tags = true
+truncate_summary = false
 +++
 
 Correct abstractions in programming are hard to make for the future case.

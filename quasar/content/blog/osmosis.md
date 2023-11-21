@@ -1,10 +1,25 @@
 +++
-title = 'Osmosis Driven Development'
-tags = ['Opinion','Software Engineering']
-excerpt = 'A look at how context drives the engineering process'
-date = 2018-10-29T07:59:41-07:00
-modified = 2020-08-08T00:06:38-07:00
+title = "Osmosis Driven Development"
+description = "A look at how context drives the engineering process"
+date = 2018-10-29
+updated = 2020-08-08
 draft = false
+
+[taxonomies]
+categories = ["Engineering"]
+tags = ["engineering", "process"]
+
+[extra]
+lang = "en"
+toc = true
+comment = true
+copy = true
+math = true
+mermaid = false
+outdate_alert = false
+outdate_alert_days = 120
+display_tags = true
+truncate_summary = false
 +++
 
 In a magical world where all tasks are well defined, performing task $$Y$$ or implement feature $$X$$ is a simple matter of doing.

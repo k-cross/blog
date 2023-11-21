@@ -1,9 +1,24 @@
 +++
-title = 'Elixir Impressions'
-tags = ['Opinion','Software Engineering']
-excerpt = 'TLDR: Elixir is awesome!!!'
-date = 2018-07-07T00:36:24-07:00
+title = "Elixir Impressions"
+description = "TLDR: Elixir is awesome!!!"
+date = 2018-07-07
 draft = false
+
+[taxonomies]
+categories = ["Engineering"]
+tags = ["engineering", "languages"]
+
+[extra]
+lang = "en"
+toc = true
+comment = true
+copy = true
+math = false
+mermaid = false
+outdate_alert = false
+outdate_alert_days = 120
+display_tags = true
+truncate_summary = false
 +++
 I've had the luxury of programming with _elixir_ for the last nine months.
 It's been my first full-time experience utilizing a functional language in a non-academic setting.

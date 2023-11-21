@@ -1,9 +1,24 @@
 +++
 title = "Three Phase Commit Data Migrations"
-tags = ["Technique", "Software Engineering"]
-date = 2018-12-09T12:35:54-07:00
-modified = 2020-07-16T00:06:38-07:00
+date = 2018-12-09
+updated = 2020-07-16
 draft = false
+
+[taxonomies]
+categories = ["Engineering"]
+tags = ["technique", "engineering"]
+
+[extra]
+lang = "en"
+toc = true
+comment = true
+copy = true
+math = false
+mermaid = false
+outdate_alert = false
+outdate_alert_days = 120
+display_tags = true
+truncate_summary = false
 +++
 
 Paving a path towards continuous delivery and zero-downtime deployments is a challenging pursuit especially when each project employs its own strategy.

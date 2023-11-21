@@ -1,9 +1,24 @@
 +++
-title = 'Distributed Algorithms: An Introduction'
-tags = ['Tutorial','Software Engineering']
-excerpt = 'An introduction into the world of distributed computing and its problems'
-date = 2020-07-18T09:20:30-07:00
+title = "Distributed Algorithms: An Introduction"
+description = "An introduction into the world of distributed computing and its problems"
+date = 2020-07-18
 draft = true
+
+[taxonomies]
+categories = ["Engineering"]
+tags = ["tutorial","engineering"]
+
+[extra]
+lang = "en"
+toc = true
+comment = true
+copy = true
+math = false
+mermaid = false
+outdate_alert = false
+outdate_alert_days = 120
+display_tags = true
+truncate_summary = false
 +++
 
 The goal here is to give an overview of common problems in the distributed computing space along with some common names.
