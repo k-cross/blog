@@ -149,12 +149,11 @@ It's pretty easy to make an IP address publicly exposed so asking a doctor to go
 
 ## Final Thoughts
 
-If you're interested in the project, it's [here](https://github.com/k-cross/pulse_oximeter).
-It was built for my son to make his health care better and my family's lives easier.
+This was built for my son to make his health care better and my family's lives easier.
 I never got to fully appreciate all the features and work I put into it, but I tried to make something simple and useful for technically inclined kindred spirits alike.
 These features were requested by others and I genuinely hope that they keep helping people in need.
 
-I don't think people shouldn need to have additional equipment and gear in order to get data from these devices, they need to be made with both doctors and patients in mind.
+I don't think people should need to have additional equipment and gear in order to get data from these devices, they need to be made with both doctors and patients in mind.
 If I was harsh on the doctors in this article about this device, please know it was just about the recommended device and not an insult to their capability.
 We had an incredible team of doctors that were all wonderful to interact with.
 They were kind and caring and often went beyond the scope of their duties to make sure our son's needs were met.

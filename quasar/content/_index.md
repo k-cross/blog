@@ -17,5 +17,4 @@ Thank you for reading!
 ## Additional Sources
 
 * [Building for Reliability](https://dropbox.tech/application/building-for-reliability-at-hellosign)
-* [LinkedIn](https://www.linkedin.com/in/kenneth-cross/)
 * [Hachyderm](https://hachyderm.io/@kmc)
