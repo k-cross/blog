@@ -1,0 +1,6 @@
+[submodule "quasar/themes/zerm"]
+	path = quasar/themes/zerm
+	url = https://github.com/k-cross/zerm
+[submodule "quasar/themes/serene"]
+	path = quasar/themes/serene
+	url = https://github.com/k-cross/serene.git
