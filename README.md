@@ -4,7 +4,7 @@ A blog built with `zola` based on the `serene` theme.
 
 ## WIP
 
-- [*] move to zola
+- [x] move to zola
 - [ ] make a11y friendly
   + color themes should be modified for higher contrast for color blind
   + tab indexs should be included for all actionable content
