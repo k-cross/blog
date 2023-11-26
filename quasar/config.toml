@@ -49,17 +49,16 @@ bio = "Person with face"
 avatar = "img/avatar.webp"
 links = [
     { name = "GitHub", icon = "github", url = "https://github.com/k-cross" },
-    { name = "Twitter", icon = "twitter", url = "https://twitter.com/quasarken" },
     { name = "Email", icon = "email", url = "mailto:kenny.kor.seo@gmail.com" },
 ]
 
 homepage_layout = "about" # "about" | "list"
 
 sections = [
-    { name = "blog", path = "/blog", is_external = false },
+    { name = "posts", path = "/posts", is_external = false },
     { name = "projects", path = "/projects", is_external = false },
 ]
-blog_section_path = "/blog"
+blog_section_path = "/posts"
 
 nav_separator = "::"
 nav_wrapper_left = "{"
