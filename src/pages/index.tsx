@@ -106,37 +106,35 @@ const MainPage: React.FC<IndexTemplateProps> = props => {
   );
 };
 
-export const pageQuery = graphql`
-  {
-    header: file(relativePath: { eq: "img/moma/diffuse.jpg" }) {
-      childImageSharp {
-        gatsbyImageData(width: 2000, quality: 100, layout: FIXED)
-      }
+export const pageQuery = graphql`{
+  header: file(relativePath: {eq: "img/moma/diffuse.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(width: 2000, quality: 100, layout: FIXED)
     }
-    allMarkdownRemark(
-      limit: 1
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { draft: { ne: true }, layout: { eq: "post" } } }
-    ) {
-      edges {
-        node {
-          timeToRead
-          frontmatter {
-            title
-            date
-            tags
-          }
-          excerpt
-          html
-          htmlAst
-          fields {
-            layout
-            slug
-          }
+  }
+  allMarkdownRemark(
+    limit: 1
+    sort: {frontmatter: {date: DESC}}
+    filter: {frontmatter: {draft: {ne: true}, layout: {eq: "post"}}}
+  ) {
+    edges {
+      node {
+        timeToRead
+        frontmatter {
+          title
+          date
+          tags
+        }
+        excerpt
+        html
+        htmlAst
+        fields {
+          layout
+          slug
         }
       }
     }
   }
-`;
+}`;
 
 export default MainPage;

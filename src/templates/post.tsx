@@ -430,61 +430,59 @@ const PostFullImage = styled.figure`
   }
 `;
 
-export const query = graphql`
-  query ($slug: String, $primaryTag: String) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
-      htmlAst
+export const query = graphql`query ($slug: String, $primaryTag: String) {
+  markdownRemark(fields: {slug: {eq: $slug}}) {
+    html
+    htmlAst
+    excerpt
+    timeToRead
+    frontmatter {
+      title
+      userDate: date(formatString: "D MMMM YYYY")
+      date
+      modified
+      tags
       excerpt
-      timeToRead
-      frontmatter {
-        title
-        userDate: date(formatString: "D MMMM YYYY")
-        date
-        modified
-        tags
-        excerpt
-        picture {
-          childImageSharp {
-            gatsbyImageData(layout: FULL_WIDTH)
-          }
+      picture {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
         }
-        author {
-          yamlId
-          bio
-          avatar {
-            children {
-              ... on ImageSharp {
-                gatsbyImageData(layout: CONSTRAINED)
-              }
+      }
+      author {
+        yamlId
+        bio
+        avatar {
+          children {
+            ... on ImageSharp {
+              gatsbyImageData(layout: CONSTRAINED)
             }
           }
         }
       }
     }
-    relatedPosts: allMarkdownRemark(
-      filter: { frontmatter: { tags: { in: [$primaryTag] }, draft: { ne: true } } }
-      limit: 5
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      totalCount
-      edges {
-        node {
-          id
-          timeToRead
-          excerpt
-          frontmatter {
-            title
-            date
-            modified
-          }
-          fields {
-            slug
-          }
+  }
+  relatedPosts: allMarkdownRemark(
+    filter: {frontmatter: {tags: {in: [$primaryTag]}, draft: {ne: true}}}
+    limit: 5
+    sort: {frontmatter: {date: DESC}}
+  ) {
+    totalCount
+    edges {
+      node {
+        id
+        timeToRead
+        excerpt
+        frontmatter {
+          title
+          date
+          modified
+        }
+        fields {
+          slug
         }
       }
     }
   }
-`;
+}`;
 
 export default PageTemplate;

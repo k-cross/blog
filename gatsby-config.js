@@ -25,6 +25,15 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-remark-mermaid',
+      options: /** @type {import('gatsby-remark-mermaid').Options} */ ({
+        mermaidConfig: {
+          theme: 'neutral',
+          themeCSS: '.node rect { fill: #fff; }'
+        }
+      })
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'content',
@@ -103,25 +112,21 @@ module.exports = {
                 });
               });
             },
-            query: `
-                {
-                  allMarkdownRemark(
-                    sort: { order: DESC, fields: [frontmatter___date] },
-                  ) {
-                    nodes {
-                      excerpt
-                      html
-                      fields { 
-                        slug 
-                      }
-                      frontmatter {
-                        title
-                        date
-                      }
-                    }
-                  }
-                }
-              `,
+            query: `{
+  allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
+    nodes {
+      excerpt
+      html
+      fields {
+        slug
+      }
+      frontmatter {
+        title
+        date
+      }
+    }
+  }
+}`,
             output: '/rss.xml',
             title: 'quasarken RSS feed',
             // optional configuration to insert feed reference in pages:

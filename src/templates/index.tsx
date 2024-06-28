@@ -115,54 +115,52 @@ const IndexPage: React.FC<IndexProps> = props => {
   );
 };
 
-export const pageQuery = graphql`
-  query blogPageQuery($skip: Int!, $limit: Int!) {
-    header: file(relativePath: { eq: "img/moma/diffuse.jpg" }) {
-      childImageSharp {
-        gatsbyImageData(width: 2000, quality: 100, layout: FIXED)
-      }
+export const pageQuery = graphql`query blogPageQuery($skip: Int!, $limit: Int!) {
+  header: file(relativePath: {eq: "img/moma/diffuse.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(width: 2000, quality: 100, layout: FIXED)
     }
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { draft: { ne: true }, layout: { eq: "post" } } }
-      limit: $limit
-      skip: $skip
-    ) {
-      edges {
-        node {
-          timeToRead
-          frontmatter {
-            title
-            date
-            tags
-            draft
-            excerpt
-            picture {
-              childImageSharp {
-                gatsbyImageData(layout: FULL_WIDTH)
-              }
+  }
+  allMarkdownRemark(
+    sort: {frontmatter: {date: DESC}}
+    filter: {frontmatter: {draft: {ne: true}, layout: {eq: "post"}}}
+    limit: $limit
+    skip: $skip
+  ) {
+    edges {
+      node {
+        timeToRead
+        frontmatter {
+          title
+          date
+          tags
+          draft
+          excerpt
+          picture {
+            childImageSharp {
+              gatsbyImageData(layout: FULL_WIDTH)
             }
-            author {
-              id
-              bio
-              avatar {
-                children {
-                  ... on ImageSharp {
-                    gatsbyImageData(layout: CONSTRAINED)
-                  }
+          }
+          author {
+            id
+            bio
+            avatar {
+              children {
+                ... on ImageSharp {
+                  gatsbyImageData(layout: CONSTRAINED)
                 }
               }
             }
           }
-          excerpt
-          fields {
-            slug
-          }
+        }
+        excerpt
+        fields {
+          slug
         }
       }
     }
   }
-`;
+}`;
 
 const HomePosts = css`
   @media (min-width: 795px) {

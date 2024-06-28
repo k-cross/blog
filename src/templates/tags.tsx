@@ -127,48 +127,46 @@ const Tags: React.FC<TagTemplateProps> = props => {
 
 export default Tags;
 
-export const pageQuery = graphql`
-  query ($tag: String) {
-    allTagYaml {
-      edges {
-        node {
-          id
-          description
+export const pageQuery = graphql`query ($tag: String) {
+  allTagYaml {
+    edges {
+      node {
+        id
+        description
+        picture {
+          childImageSharp {
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
+        }
+      }
+    }
+  }
+  allMarkdownRemark(
+    limit: 2000
+    sort: {frontmatter: {date: DESC}}
+    filter: {frontmatter: {tags: {in: [$tag]}, draft: {ne: true}}}
+  ) {
+    totalCount
+    edges {
+      node {
+        excerpt
+        timeToRead
+        frontmatter {
+          title
+          excerpt
+          tags
+          date
           picture {
             childImageSharp {
               gatsbyImageData(layout: FULL_WIDTH)
             }
           }
         }
-      }
-    }
-    allMarkdownRemark(
-      limit: 2000
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] }, draft: { ne: true } } }
-    ) {
-      totalCount
-      edges {
-        node {
-          excerpt
-          timeToRead
-          frontmatter {
-            title
-            excerpt
-            tags
-            date
-            picture {
-              childImageSharp {
-                gatsbyImageData(layout: FULL_WIDTH)
-              }
-            }
-          }
-          fields {
-            layout
-            slug
-          }
+        fields {
+          layout
+          slug
         }
       }
     }
   }
-`;
+}`;
