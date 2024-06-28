@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Three Phase Commit Data Migrations'
-author: [quasarken]
+author: [Ken Cross]
 excerpt: 'A technique describing zero-downtime data migrations'
 tags: ['Technique', 'Software Engineering']
 date: 2018-12-09T12:35:54-07:00

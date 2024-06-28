@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Distributed Algorithms: An Introduction'
-author: [quasarken]
+author: [Ken Cross]
 tags: ['Tutorial','Software Engineering']
 excerpt: 'An introduction into the world of distributed computing and its problems'
 date: 2020-07-18T09:20:30-07:00

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Effective Software Engineering Processes'
-author: [quasarken]
+author: [Ken Cross]
 tags: ['Research','Software Engineering']
 excerpt: 'Using research to review software engineering processes'
 date: '2020-07-14T15:11:55.000Z'

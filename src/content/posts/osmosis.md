@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 'Osmosis Driven Development'
-author: [quasarken]
+author: [Ken Cross]
 tags: ['Opinion','Software Engineering']
-excerpt: 'A look at how context drives the engineering process'
+excerpt: 'How context drives the engineering process'
 date: 2018-10-29T07:59:41-07:00
 modified: 2020-08-08T00:06:38-07:00
 draft: false

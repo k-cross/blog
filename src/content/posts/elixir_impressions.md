@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Elixir Impressions'
-author: [quasarken]
+author: [Ken Cross]
 tags: ['Opinion','Software Engineering']
 excerpt: 'TLDR: Elixir is awesome!!!'
 date: 2018-07-07T00:36:24-07:00

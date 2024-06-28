@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Abstractions'
-author: [quasarken]
+author: [Ken Cross]
 excerpt: 'Reflecting on "The Art of Destroying Software" by Greg Young'
 tags: ['Opinion', 'Software Engineering']
 date: 2018-07-04T00:06:38-07:00
