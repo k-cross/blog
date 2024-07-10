@@ -154,7 +154,7 @@ module.exports = {
         },
         pluginConfig: {
           // Puts tracking script in the head instead of the body
-          head: true,
+          head: false,
           // Disable analytics for users with `Do Not Track` enabled
           respectDNT: true,
           // Avoids sending pageview hits from custom paths
