@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: 'quasarken',
+    title: 'Ken Cross',
     description: 'A blog about mostly technical things',
     siteUrl: 'https://k-cross.github.io', // full path to blog - no ending slash
   },
@@ -25,15 +25,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-remark-mermaid',
-      options: /** @type {import('gatsby-remark-mermaid').Options} */ ({
-        mermaidConfig: {
-          theme: 'neutral',
-          themeCSS: '.node rect { fill: #fff; }'
-        }
-      })
-    },
-    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'content',
@@ -50,6 +41,15 @@ module.exports = {
               // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
               strict: 'ignore',
             },
+          },
+          {
+            resolve: 'gatsby-remark-mermaid',
+            options: /** @type {import('gatsby-remark-mermaid').Options} */ ({
+              mermaidConfig: {
+                theme: 'neutral',
+                themeCSS: '.node rect { fill: #fff; }'
+              }
+            })
           },
           {
             resolve: 'gatsby-remark-responsive-iframe',
@@ -128,7 +128,7 @@ module.exports = {
   }
 }`,
             output: '/rss.xml',
-            title: 'quasarken RSS feed',
+            title: 'Ken\'s RSS feed',
             // optional configuration to insert feed reference in pages:
             // if `string` is used, it will be used to create RegExp and then test if pathname of
             // current page satisfied this regular expression;
@@ -145,21 +145,21 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: 'gatsby-plugin-google-gtag',
       options: {
-        trackingId: 'UA-171511946-1',
-        // Puts tracking script in the head instead of the body
-        head: true,
-        // IP anonymization for GDPR compliance
-        anonymize: true,
-        // Disable analytics for users with `Do Not Track` enabled
-        respectDNT: true,
-        // Avoids sending pageview hits from custom paths
-        exclude: ['/preview/**'],
-        // Specifies what percentage of users should be tracked
-        sampleRate: 100,
-        // Determines how often site speed tracking beacons will be sent
-        siteSpeedSampleRate: 10,
+        trackingIds: ['UA-171511946-1'],
+        gtagConfig: {
+          // IP anonymization for GDPR compliance
+          anonymize_ip: true,
+        },
+        pluginConfig: {
+          // Puts tracking script in the head instead of the body
+          head: true,
+          // Disable analytics for users with `Do Not Track` enabled
+          respectDNT: true,
+          // Avoids sending pageview hits from custom paths
+          exclude: ['/preview/**'],
+        },
       },
     },
   ],

@@ -22,7 +22,7 @@ export interface WebsiteConfig {
 }
 
 const config: WebsiteConfig = {
-  title: 'quasarken',
+  title: 'Ken Cross',
   description: 'a blog mostly about software engineering',
   coverImage: 'img/blog-cover.png',
   lang: 'en',
