@@ -147,7 +147,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-gtag',
       options: {
-        trackingIds: ['UA-171511946-1'],
+        trackingIds: ['UA-171511946-1', 'G-3CHBH260MV'],
         gtagConfig: {
           // IP anonymization for GDPR compliance
           anonymize_ip: true,
