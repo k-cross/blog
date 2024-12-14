@@ -1,118 +1,125 @@
-import { graphql } from 'gatsby';
-import React from 'react';
-import { getSrc } from 'gatsby-plugin-image';
-import { Helmet } from 'react-helmet';
+import { graphql } from "gatsby";
+import React from "react";
+import { getSrc } from "gatsby-plugin-image";
+import { Helmet } from "react-helmet";
 
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 
-import { Footer } from '../components/Footer';
-import SiteNav from '../components/header/SiteNav';
-import { PostCard } from '../components/PostCard';
-import { Wrapper } from '../components/Wrapper';
-import IndexLayout from '../layouts';
+import { Footer } from "../components/Footer";
+import SiteNav from "../components/header/SiteNav";
+import { PostCard } from "../components/PostCard";
+import { Wrapper } from "../components/Wrapper";
+import IndexLayout from "../layouts";
 import {
-  inner,
-  outer,
-  PostFeed,
-  Posts,
-  SiteDescription,
-  SiteHeader,
-  SiteHeaderContent,
-  SiteMain,
-  SiteTitle,
-  SiteHeaderStyles,
-} from '../styles/shared';
-import config from '../website-config';
-import { PageContext } from './post';
+	inner,
+	outer,
+	PostFeed,
+	Posts,
+	SiteDescription,
+	SiteHeader,
+	SiteHeaderContent,
+	SiteMain,
+	SiteTitle,
+	SiteHeaderStyles,
+} from "../styles/shared";
+import config from "../website-config";
+import { PageContext } from "./post";
 
 export interface IndexProps {
-  pageContext: {
-    currentPage: number;
-    numPages: number;
-  };
-  data: {
-    header: {
-      childImageSharp: {
-        gatsbyImageData: any;
-      };
-    };
-    allMarkdownRemark: {
-      edges: Array<{
-        node: PageContext;
-      }>;
-    };
-  };
+	pageContext: {
+		currentPage: number;
+		numPages: number;
+	};
+	data: {
+		header: {
+			childImageSharp: {
+				gatsbyImageData: any;
+			};
+		};
+		allMarkdownRemark: {
+			edges: Array<{
+				node: PageContext;
+			}>;
+		};
+	};
 }
 
-const IndexPage: React.FC<IndexProps> = props => {
-  const { width, height } = props.data.header.childImageSharp.gatsbyImageData;
-  const imgPath = getSrc(props.data.header);
+const IndexPage: React.FC<IndexProps> = (props) => {
+	const { width, height } = props.data.header.childImageSharp.gatsbyImageData;
+	const imgPath = getSrc(props.data.header);
 
-  return (
-    <IndexLayout css={HomePosts}>
-      <Helmet>
-        <html lang={config.lang} />
-        <title>{config.title}</title>
-        <meta name="description" content={config.description} />
-        <meta property="og:site_name" content={config.title} />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={config.title} />
-        <meta property="og:description" content={config.description} />
-        <meta property="og:url" content={config.siteUrl} />
-        <meta property="og:image" content={imgPath} />
-        {config.googleSiteVerification && (
-          <meta name="google-site-verification" content={config.googleSiteVerification} />
-        )}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={config.title} />
-        <meta name="twitter:description" content={config.description} />
-        <meta name="twitter:url" content={config.siteUrl} />
-        <meta name="twitter:image" content={imgPath} />
-        {config.twitter && (
-          <meta
-            name="twitter:site"
-            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-          />
-        )}
-        <meta property="og:image:width" content={width.toString()} />
-        <meta property="og:image:height" content={height.toString()} />
-      </Helmet>
-      <Wrapper>
-        <div
-          css={[outer, SiteHeader, SiteHeaderStyles]}
-          className="site-header-background"
-          style={{
-            backgroundImage: `url('${imgPath}')`,
-          }}
-        >
-          <div css={inner}>
-            <SiteNav isHome />
-            <SiteHeaderContent className="site-header-conent">
-              <SiteTitle className="site-title">{config.title}</SiteTitle>
-              <SiteDescription>{config.description}</SiteDescription>
-            </SiteHeaderContent>
-          </div>
-        </div>
-        <main id="site-main" css={[SiteMain, outer]}>
-          <div css={[inner, Posts]}>
-            <div css={[PostFeed]}>
-              {props.data.allMarkdownRemark.edges.map((post, index) => {
-                // filter out drafts in production
-                return (
-                  (post.node.frontmatter.draft !== true ||
-                    process.env.NODE_ENV !== 'production') && (
-                    <PostCard key={post.node.fields.slug} post={post.node} large={index === 0} />
-                  )
-                );
-              })}
-            </div>
-          </div>
-        </main>
-        {props.children}
-        <Footer />
-      </Wrapper>
-    </IndexLayout>
-  );
+	return (
+		<IndexLayout css={HomePosts}>
+			<Helmet>
+				<html lang={config.lang} />
+				<title>{config.title}</title>
+				<meta name="description" content={config.description} />
+				<meta property="og:site_name" content={config.title} />
+				<meta property="og:type" content="website" />
+				<meta property="og:title" content={config.title} />
+				<meta property="og:description" content={config.description} />
+				<meta property="og:url" content={config.siteUrl} />
+				<meta property="og:image" content={imgPath} />
+				{config.googleSiteVerification && (
+					<meta
+						name="google-site-verification"
+						content={config.googleSiteVerification}
+					/>
+				)}
+				<meta name="bsky:card" content="summary_large_image" />
+				<meta name="bsky:title" content={config.title} />
+				<meta name="bsky:description" content={config.description} />
+				<meta name="bsky:url" content={config.siteUrl} />
+				<meta name="bsky:image" content={imgPath} />
+				{config.bsky && (
+					<meta
+						name="bsky:site"
+						content={`@${config.bsky.split("https://bsky.app/")[1]}`}
+					/>
+				)}
+				<meta property="og:image:width" content={width.toString()} />
+				<meta property="og:image:height" content={height.toString()} />
+			</Helmet>
+			<Wrapper>
+				<div
+					css={[outer, SiteHeader, SiteHeaderStyles]}
+					className="site-header-background"
+					style={{
+						backgroundImage: `url('${imgPath}')`,
+					}}
+				>
+					<div css={inner}>
+						<SiteNav isHome />
+						<SiteHeaderContent className="site-header-conent">
+							<SiteTitle className="site-title">{config.title}</SiteTitle>
+							<SiteDescription>{config.description}</SiteDescription>
+						</SiteHeaderContent>
+					</div>
+				</div>
+				<main id="site-main" css={[SiteMain, outer]}>
+					<div css={[inner, Posts]}>
+						<div css={[PostFeed]}>
+							{props.data.allMarkdownRemark.edges.map((post, index) => {
+								// filter out drafts in production
+								return (
+									(post.node.frontmatter.draft !== true ||
+										process.env.NODE_ENV !== "production") && (
+										<PostCard
+											key={post.node.fields.slug}
+											post={post.node}
+											large={index === 0}
+										/>
+									)
+								);
+							})}
+						</div>
+					</div>
+				</main>
+				{props.children}
+				<Footer />
+			</Wrapper>
+		</IndexLayout>
+	);
 };
 
 export const pageQuery = graphql`query blogPageQuery($skip: Int!, $limit: Int!) {

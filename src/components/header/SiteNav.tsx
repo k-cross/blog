@@ -1,116 +1,118 @@
-import { Link } from 'gatsby';
-import { darken } from 'polished';
-import React from 'react';
+import { Link } from "gatsby";
+import { darken } from "polished";
+import React from "react";
 
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 
-import { colors } from '../../styles/colors';
-import { SocialLink } from '../../styles/shared';
-import config from '../../website-config';
-import { Twitter } from '../icons/twitter';
+import { colors } from "../../styles/colors";
+import { SocialLink } from "../../styles/shared";
+import config from "../../website-config";
+import { Bluesky } from "../icons/bluesky";
 
 interface SiteNavProps {
-  isHome?: boolean;
-  isPost?: boolean;
-  post?: any;
+	isHome?: boolean;
+	isPost?: boolean;
+	post?: any;
 }
 
 interface SiteNavState {
-  showTitle: boolean;
+	showTitle: boolean;
 }
 
 class SiteNav extends React.Component<SiteNavProps, SiteNavState> {
-  titleRef = React.createRef<HTMLSpanElement>();
-  lastScrollY = 0;
-  ticking = false;
-  state = { showTitle: false };
+	titleRef = React.createRef<HTMLSpanElement>();
+	lastScrollY = 0;
+	ticking = false;
+	state = { showTitle: false };
 
-  componentDidMount(): void {
-    this.lastScrollY = window.scrollY;
-    if (this.props.isPost) {
-      window.addEventListener('scroll', this.onScroll, { passive: true });
-    }
-  }
+	componentDidMount(): void {
+		this.lastScrollY = window.scrollY;
+		if (this.props.isPost) {
+			window.addEventListener("scroll", this.onScroll, { passive: true });
+		}
+	}
 
-  componentWillUnmount(): void {
-    window.removeEventListener('scroll', this.onScroll);
-  }
+	componentWillUnmount(): void {
+		window.removeEventListener("scroll", this.onScroll);
+	}
 
-  onScroll = () => {
-    if (!this.titleRef || !this.titleRef.current) {
-      return;
-    }
+	onScroll = () => {
+		if (!this.titleRef || !this.titleRef.current) {
+			return;
+		}
 
-    if (!this.ticking) {
-      requestAnimationFrame(this.update);
-    }
+		if (!this.ticking) {
+			requestAnimationFrame(this.update);
+		}
 
-    this.ticking = true;
-  };
+		this.ticking = true;
+	};
 
-  update = () => {
-    if (!this.titleRef || !this.titleRef.current) {
-      return;
-    }
+	update = () => {
+		if (!this.titleRef || !this.titleRef.current) {
+			return;
+		}
 
-    this.lastScrollY = window.scrollY;
+		this.lastScrollY = window.scrollY;
 
-    const trigger = this.titleRef.current.getBoundingClientRect().top;
-    const triggerOffset = this.titleRef.current.offsetHeight + 35;
+		const trigger = this.titleRef.current.getBoundingClientRect().top;
+		const triggerOffset = this.titleRef.current.offsetHeight + 35;
 
-    // show/hide post title
-    if (this.lastScrollY >= trigger + triggerOffset) {
-      this.setState({ showTitle: true });
-    } else {
-      this.setState({ showTitle: false });
-    }
+		// show/hide post title
+		if (this.lastScrollY >= trigger + triggerOffset) {
+			this.setState({ showTitle: true });
+		} else {
+			this.setState({ showTitle: false });
+		}
 
-    this.ticking = false;
-  };
+		this.ticking = false;
+	};
 
-  render(): JSX.Element {
-    const { isHome = false, isPost = false, post = {} } = this.props;
-    return (
-      <nav css={SiteNavStyles}>
-        <SiteNavLeft className="site-nav-left">
-          <SiteNavContent css={[this.state.showTitle ? HideNav : '']}>
-            <ul css={NavStyles} role="menu">
-              <li role="menuitem">
-                <Link className="site-nav-logo" to="/">{config.title}</Link>
-              </li>
-              <li role="menuitem">
-                <Link to="/posts">Posts</Link>
-              </li>
-              <li role="menuitem">
-                <Link to="/about">About</Link>
-              </li>
-            </ul>
-            {isPost && (
-              <NavPostTitle ref={this.titleRef} className="nav-post-title">
-                {post.title}
-              </NavPostTitle>
-            )}
-          </SiteNavContent>
-        </SiteNavLeft>
-        <SiteNavRight>
-          <SocialLinks>
-            {config.twitter && (
-              <a
-                css={SocialLink}
-                href={config.twitter}
-                title="Twitter"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Twitter />
-              </a>
-            )}
-          </SocialLinks>
-        </SiteNavRight>
-      </nav>
-    );
-  }
+	render(): JSX.Element {
+		const { isHome = false, isPost = false, post = {} } = this.props;
+		return (
+			<nav css={SiteNavStyles}>
+				<SiteNavLeft className="site-nav-left">
+					<SiteNavContent css={[this.state.showTitle ? HideNav : ""]}>
+						<ul css={NavStyles} role="menu">
+							<li role="menuitem">
+								<Link className="site-nav-logo" to="/">
+									{config.title}
+								</Link>
+							</li>
+							<li role="menuitem">
+								<Link to="/posts">Posts</Link>
+							</li>
+							<li role="menuitem">
+								<Link to="/about">About</Link>
+							</li>
+						</ul>
+						{isPost && (
+							<NavPostTitle ref={this.titleRef} className="nav-post-title">
+								{post.title}
+							</NavPostTitle>
+						)}
+					</SiteNavContent>
+				</SiteNavLeft>
+				<SiteNavRight>
+					<SocialLinks>
+						{config.bsky && (
+							<a
+								css={SocialLink}
+								href={config.bsky}
+								title="Bluesky"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<Bluesky />
+							</a>
+						)}
+					</SocialLinks>
+				</SiteNavRight>
+			</nav>
+		);
+	}
 }
 
 export const SiteNavMain = css`
@@ -120,7 +122,7 @@ export const SiteNavMain = css`
   left: 0;
   z-index: 1000;
   /* background: color(var(--darkgrey) l(-5%)) */
-  background: ${darken('0.05', colors.darkgrey)};
+  background: ${darken("0.05", colors.darkgrey)};
 
   @media (max-width: 700px) {
     padding-right: 0;

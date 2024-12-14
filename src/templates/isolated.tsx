@@ -1,139 +1,153 @@
-import { graphql } from 'gatsby';
+import { graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { setLightness } from 'polished';
-import React from 'react';
-import { Helmet } from 'react-helmet';
+import { setLightness } from "polished";
+import React from "react";
+import { Helmet } from "react-helmet";
 
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 
-import { Footer } from '../components/Footer';
-import SiteNav, { SiteNavMain } from '../components/header/SiteNav';
-import PostContent from '../components/PostContent';
-import { Wrapper } from '../components/Wrapper';
-import IndexLayout from '../layouts';
-import { colors } from '../styles/colors';
-import { inner, outer, SiteMain } from '../styles/shared';
-import config from '../website-config';
+import { Footer } from "../components/Footer";
+import SiteNav, { SiteNavMain } from "../components/header/SiteNav";
+import PostContent from "../components/PostContent";
+import { Wrapper } from "../components/Wrapper";
+import IndexLayout from "../layouts";
+import { colors } from "../styles/colors";
+import { inner, outer, SiteMain } from "../styles/shared";
+import config from "../website-config";
 
 interface PageTemplateProps {
-  pageContext: {
-    slug: string;
-  };
-  data: {
-    markdownRemark: {
-      html: string;
-      htmlAst: any;
-      timeToRead: string;
-      frontmatter: {
-        title: string;
-        picture: {
-          childImageSharp: {
-            gatsbyImageData: any;
-          };
-        };
-      };
-    };
-  };
+	pageContext: {
+		slug: string;
+	};
+	data: {
+		markdownRemark: {
+			html: string;
+			htmlAst: any;
+			timeToRead: string;
+			frontmatter: {
+				title: string;
+				picture: {
+					childImageSharp: {
+						gatsbyImageData: any;
+					};
+				};
+			};
+		};
+	};
 }
 
 export interface PageContext {
-  timeToRead: number;
-  fields: {
-    slug: string;
-  };
-  frontmatter: {
-    picture: {
-      childImageSharp: {
-        gatsbyImageData(layout: CONSTRAINED)
-      };
-    };
-    title: string;
-  };
+	timeToRead: number;
+	fields: {
+		slug: string;
+	};
+	frontmatter: {
+		picture: {
+			childImageSharp: {
+				gatsbyImageData(layout: CONSTRAINED);
+			};
+		};
+		title: string;
+	};
 }
 
-const PageTemplate: React.FC<PageTemplateProps> = props => {
-  const post = props.data.markdownRemark;
-  let width = '';
-  let height = '';
-  if (post.frontmatter.picture?.childImageSharp) {
-    width = post.frontmatter.picture.childImageSharp.gatsbyImageData.width;
-    height = String(Number(width) / post.frontmatter.picture.childImageSharp.gatsbyImageData.aspectRatio);
-  }
+const PageTemplate: React.FC<PageTemplateProps> = (props) => {
+	const post = props.data.markdownRemark;
+	let width = "";
+	let height = "";
+	if (post.frontmatter.picture?.childImageSharp) {
+		width = post.frontmatter.picture.childImageSharp.gatsbyImageData.width;
+		height = String(
+			Number(width) /
+				post.frontmatter.picture.childImageSharp.gatsbyImageData.aspectRatio,
+		);
+	}
 
-  return (
-    <IndexLayout>
-      <Helmet>
-        <html lang={config.lang} />
-        <title>{post.frontmatter.title}</title>
+	return (
+		<IndexLayout>
+			<Helmet>
+				<html lang={config.lang} />
+				<title>{post.frontmatter.title}</title>
 
-        <meta property="og:site_name" content={config.title} />
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={post.frontmatter.title} />
-        <meta property="og:url" content={config.siteUrl + props.pageContext.slug} />
-        {post.frontmatter.picture?.childImageSharp && (
-          <meta
-            property="og:image"
-            content={`${config.siteUrl}${post.frontmatter.picture.childImageSharp.gatsbyImageData.src}`}
-          />
-        )}
+				<meta property="og:site_name" content={config.title} />
+				<meta property="og:type" content="article" />
+				<meta property="og:title" content={post.frontmatter.title} />
+				<meta
+					property="og:url"
+					content={config.siteUrl + props.pageContext.slug}
+				/>
+				{post.frontmatter.picture?.childImageSharp && (
+					<meta
+						property="og:image"
+						content={`${config.siteUrl}${post.frontmatter.picture.childImageSharp.gatsbyImageData.src}`}
+					/>
+				)}
 
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.frontmatter.title} />
-        <meta name="twitter:url" content={config.siteUrl + props.pageContext.slug} />
-        {post.frontmatter.picture?.childImageSharp && (
-          <meta
-            name="twitter:image"
-            content={`${config.siteUrl}${post.frontmatter.picture.childImageSharp.gatsbyImageData.src}`}
-          />
-        )}
-        {config.twitter && (
-          <meta
-            name="twitter:site"
-            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-          />
-        )}
-        {config.twitter && (
-          <meta
-            name="twitter:creator"
-            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-          />
-        )}
-        {width && <meta property="og:image:width" content={width} />}
-        {height && <meta property="og:image:height" content={height} />}
-      </Helmet>
-      <Wrapper css={PostTemplate}>
-        <header className="site-header">
-          <div css={[outer, SiteNavMain]}>
-            <div css={inner}>
-              <SiteNav isPost post={post.frontmatter} />
-            </div>
-          </div>
-        </header>
-        <main id="site-main" className="site-main" css={[SiteMain, outer]}>
-          <div css={inner}>
-            <article css={[PostFull, !post.frontmatter.picture && NoImage]}>
-              <PostFullHeader className="post-full-header">
-                <PostFullTitle className="post-full-title">{post.frontmatter.title}</PostFullTitle>
-              </PostFullHeader>
+				<meta name="bsky:card" content="summary_large_image" />
+				<meta name="bsky:title" content={post.frontmatter.title} />
+				<meta
+					name="bsky:url"
+					content={config.siteUrl + props.pageContext.slug}
+				/>
+				{post.frontmatter.picture?.childImageSharp && (
+					<meta
+						name="bsky:image"
+						content={`${config.siteUrl}${post.frontmatter.picture.childImageSharp.gatsbyImageData.src}`}
+					/>
+				)}
+				{config.bsky && (
+					<meta
+						name="bsky:site"
+						content={`@${config.bsky.split("https://bsky.app/")[1]}`}
+					/>
+				)}
+				{config.bsky && (
+					<meta
+						name="bsky:creator"
+						content={`@${config.bsky.split("https://bsky.app/")[1]}`}
+					/>
+				)}
+				{width && <meta property="og:image:width" content={width} />}
+				{height && <meta property="og:image:height" content={height} />}
+			</Helmet>
+			<Wrapper css={PostTemplate}>
+				<header className="site-header">
+					<div css={[outer, SiteNavMain]}>
+						<div css={inner}>
+							<SiteNav isPost post={post.frontmatter} />
+						</div>
+					</div>
+				</header>
+				<main id="site-main" className="site-main" css={[SiteMain, outer]}>
+					<div css={inner}>
+						<article css={[PostFull, !post.frontmatter.picture && NoImage]}>
+							<PostFullHeader className="post-full-header">
+								<PostFullTitle className="post-full-title">
+									{post.frontmatter.title}
+								</PostFullTitle>
+							</PostFullHeader>
 
-              {post.frontmatter.picture?.childImageSharp && (
-                <PostFullImage>
-                  <GatsbyImage
-                    image={post.frontmatter.picture.childImageSharp.gatsbyImageData}
-                    style={{ height: '100%' }}
-                    alt={post.frontmatter.title} />
-                </PostFullImage>
-              )}
-              <PostContent htmlAst={post.htmlAst} />
-            </article>
-          </div>
-        </main>
+							{post.frontmatter.picture?.childImageSharp && (
+								<PostFullImage>
+									<GatsbyImage
+										image={
+											post.frontmatter.picture.childImageSharp.gatsbyImageData
+										}
+										style={{ height: "100%" }}
+										alt={post.frontmatter.title}
+									/>
+								</PostFullImage>
+							)}
+							<PostContent htmlAst={post.htmlAst} />
+						</article>
+					</div>
+				</main>
 
-        <Footer />
-      </Wrapper>
-    </IndexLayout>
-  );
+				<Footer />
+			</Wrapper>
+		</IndexLayout>
+	);
 };
 
 const PostTemplate = css`
@@ -190,7 +204,7 @@ export const PostFullHeader = styled.header`
 
 export const PostFullTitle = styled.h1`
   margin: 0 0 0.2em;
-  color: ${setLightness('0.05', colors.darkgrey)};
+  color: ${setLightness("0.05", colors.darkgrey)};
   @media (max-width: 500px) {
     margin-top: 0.2em;
     font-size: 3.3rem;

@@ -1,33 +1,33 @@
-import { Link } from 'gatsby';
-import { setLightness } from 'polished';
-import React from 'react';
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
+import { Link } from "gatsby";
+import { setLightness } from "polished";
+import React from "react";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
-import { colors } from '../styles/colors';
-import { outer, inner } from '../styles/shared';
-import config from '../website-config';
+import { colors } from "../styles/colors";
+import { outer, inner } from "../styles/shared";
+import config from "../website-config";
 
 export const Footer: React.FC = () => {
-  return (
-    <footer css={[outer, SiteFooter]}>
-      <div css={[inner, SiteFooterContent]}>
-        <section className="copyright">
-          <Link to="/">{config.title}</Link> &copy; {new Date().getFullYear()}{' '}
-        </section>
-        <SiteFooterNav>
-          <Link to="/posts">Latest Posts</Link>
-          {config.twitter && (
-            <a href={config.twitter} target="_blank" rel="noopener noreferrer">
-              Twitter
-            </a>
-          )}
+	return (
+		<footer css={[outer, SiteFooter]}>
+			<div css={[inner, SiteFooterContent]}>
+				<section className="copyright">
+					<Link to="/">{config.title}</Link> &copy; {new Date().getFullYear()}{" "}
+				</section>
+				<SiteFooterNav>
+					<Link to="/posts">Latest Posts</Link>
+					{config.bsky && (
+						<a href={config.bsky} target="_blank" rel="noopener noreferrer">
+							Bluesky
+						</a>
+					)}
 
-          <a href="/rss.xml">RSS</a>
-        </SiteFooterNav>
-      </div>
-    </footer>
-  );
+					<a href="/rss.xml">RSS</a>
+				</SiteFooterNav>
+			</div>
+		</footer>
+	);
 };
 
 const SiteFooter = css`
@@ -35,7 +35,7 @@ const SiteFooter = css`
   padding-top: 20px;
   padding-bottom: 60px;
   color: #fff;
-  background: ${setLightness('0.0015', colors.darkgrey)};
+  background: ${setLightness("0.0015", colors.darkgrey)};
 `;
 
 const SiteFooterContent = css`
@@ -86,4 +86,3 @@ const SiteFooterNav = styled.nav`
     }
   }
 `;
-
