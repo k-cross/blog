@@ -4,11 +4,14 @@ title: 'Toxic Wastelands'
 author: [Ken Cross]
 tags: ['Opinion', 'Software Engineering', 'Culture', 'Leadership']
 excerpt: 'Toxic cultures ruin businesses'
-date: '2024-12-12T15:11:55.000Z'
+date: '2024-13-12T15:11:55.000Z'
+modified: '2024-16-12T00:00:55.000Z'
 draft: false
 ---
 
 Chances are you have experienced working with someone that devours joy in anything at some point. It's easy to avoid their foulness except when they hold direct authority over you. Worst is when an entire organization is rancid, injecting its venomous tendencies into everything, where the only solace are on the disjoint and dotted lines in org. charts. Leaders that are indifferent on culture issues because they're viewed as not moving the needle for business objectives, will eventually corrode their workplace and will not move the needle on business objectives.
+
+_Note: does not focus on intentional sabotage to promote attrition._
 
 ## HAZMAT Protection Level A Required
 
@@ -101,7 +104,7 @@ Treating individuals differently. To some degree this is inevitable, but wildly 
 
 How people are treated matters. Being gaslit into nice perks for mental health is not the same as having the psychological safety to speak your mind and improve working conditions. Being accepted by colleagues needs to happen or relationships break down and the politics begin.
 
-For example, one org had their people promoted to the highest positions based on length of tenure, instead of proven credentials. My first month on a new team I asked the sole staff engineer for an overview of the product's architecture. This team was small. One concern I brought up was about signed integer ID values in a MySQL database, noticing it had a legacy PHP application still in tact. The staff engineer immediately said they don't have any signed integer IDs so I shouldn't worry about it. Then when doing performance testing and running into issues with the database, I ended up analyzing the schemas. Sure enough, it was a mixture of a lot of stuff but in it, were the signed integer values.... It was in that moment that I knew I could not trust the technical leadership. They could build things, but no one actually did more than read stack overflow to get answers to their questions without doing the hard work of understanding how anything actually worked. It's a brutal assumption that mostly ended up being correct. The problem is that when unqualified people become technical leaders, it diminishes the real work being done by people who deserve to be recognized. Eventually someone will notice and it will be a problem for the organization.
+For example, one org had their people promoted to the highest positions based on length of tenure, instead of proven credentials. My first month on a new team, I asked the sole staff engineer for an overview of the product's architecture. This team was small. One concern I brought up was about signed integer ID values in a MySQL database, noticing it had a legacy PHP application still in tact. The staff engineer immediately said they don't have any signed integer IDs so I shouldn't worry about it. Then when doing performance testing and running into issues with the database, I ended up analyzing the schemas. Sure enough, it was a mixture of a lot of stuff but in it, were the signed integer values.... It was in that moment that I knew I could not trust the technical leadership. They could build things, but no one actually did more than read stack overflow to get answers to their questions without doing the hard work of understanding how anything actually worked. It's a brutal assumption that mostly ended up being correct. The problem is that when unqualified people become technical leaders, it diminishes the real work being done by people who deserve to be recognized. Eventually someone will notice and it will be a problem for the organization.
 
 ## Root of Trust
 
