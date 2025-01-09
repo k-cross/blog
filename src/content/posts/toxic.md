@@ -5,7 +5,7 @@ author: [Ken Cross]
 tags: ['Opinion', 'Software Engineering', 'Culture', 'Leadership']
 excerpt: 'Toxic cultures ruin businesses'
 date: '2024-13-12T15:11:55.000Z'
-modified: '2024-16-12T00:00:55.000Z'
+modified: '2024-16-12T15:01:55.000Z'
 draft: false
 ---
 

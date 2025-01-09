@@ -5,6 +5,7 @@ author: [Ken Cross]
 tags: ['Summary', 'Business']
 excerpt: 'Sumarizing books comonly used to build business strategy'
 date: '2024-07-07T15:11:55.000Z'
+modified: '2024-07-07T15:11:55.000Z'
 draft: false
 ---
 

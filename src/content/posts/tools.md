@@ -1,0 +1,32 @@
+---
+layout: post
+title: 'Modern Tools'
+author: [Ken Cross]
+tags: ['Opinion', 'Software Engineering']
+excerpt: 'A new age for software engineers'
+date: '2025-01-09T07:59:41.000Z'
+modified: '2025-01-09T07:59:41.000Z'
+draft: false
+---
+
+It's easy to get attached to our tools, regardless of profession. The ones that are hardest to move away from are the ones that took the most time to learn which is probably a classic case of sunk cost fallacy for moving on. Tools in software have gotten a lot better over the years, and they are getting more accessible too. It's made all of our lives easier. I am also someone that is not going to learn every feature of every tool. I like new tools that are simple and straight forward that require minimal configuration in order to do my job unless that _is_ the job. Special configurations go out of date and break, they become maintainability burdens and customizing them means being unfamiliar with their standard behavior across environments which is unappealing.
+
+Some of my personal favorite new tools are less well known but I think have high potential to help us work more effectively.
+
+- Zed, and Helix editors have mostly replaced my neovim setup
+- jj has replaced most of my personal git age
+- zellij has replaced my terminal multiplexer setup
+- alacritty has replaced my terminal emulator setup
+- rust has replaced many python scripts for CLI programs
+
+Both the Zed and Helix editors are phenomonal in their own ways. The terminal has been my home for work for most of my career but setting up many common tools like language servers has an impact on performance and maintainability on neovim. Helix has been a refreshing change from it in many ways, it's a different type of modal editor that makes it easier to learn the system, but also makes it easy to use the modern features that I care about, baked into the editor and managed through some settings files. My issue is that I am still not entirely productive with _helix_ because it has different key bindings and finding ways to make that translation from _vim_ have not always been easy. That said, I do welcome the differences it brings to the table and the experimentation its done in the problem space. I hope it becomes more widely adopted because it probably would make modal editing more popular than it is today. I also started splitting my time up with _Zed_ which is not a terminal based editor but has good _vim_ emulation and is incredibly fast. I do miss my terminal workflow from time to time but it's been less and less with _zed_, I find most of what I want to do and quick tasks can mostly be achieved through its baked in terminal. It's not perfect but it's a big upgrade from _VS Code_.
+
+Next, _jujutsu_ or _jj_ has replaced most of my usage of _git_ for my personal projects. It's workflow is nicer, it's CLI is more intuitive and it has done its homework about real features it can add on to it while supporting _git_ as its backend. The reason I was not able to use this at work was because it uses headless by default and making all the custom git tooling work properly with internal systems was more of a headache than not doing it. If you don't have a company with highly modified _git_ and custom tooling to manage its workflows, consider using _jj_. It's easier to learn, navigate, and onboard people into while still providing value to people who use it now.
+
+Discovering _tmux_ in the past was a huge breakthrough in my workflow performance. It completely removed my need for a tiling window manager since I mostly used one for additional terminals. It's pretty rare that I want tiling windows for other things but it is occasionally nice to have. The thing though, configuring _tmux_ is not straight forward. Terminal emulators have come a long way and it has some hostile defaults for what one would expect in a modern application. _Zellij_ fills the gap for me here. Not only does it have sane modern defaults, but it also adds a whole host of interesting and useful features. Another reason I like using _zellij_ on my local environment is because I don't need to worry about nested instances when I ssh into another system. I can use _tmux_ on the remote system and know that all of my tmux controls are being applied to that instance.
+
+I mostly develop on Mac these days, in the past I was sporting a gentoo rig but after having kids, I realized that I want to spend more of my time not dealing with configuration issues. That said, the default Mac terminal emulator is not very good. It's very slow to respond to inputs and run programs. The responsiveness of alacritty has been real. I am likely to switch to Mitch Hashimoto's ghostty once it's publically released though because he spent a lot of time on it and has far more features than alacritty will likely ever support.
+
+Lastly, _rust_ has been an amazing tool. It's helped me write very powerful CLIs at work and on personal projects. The thing I like about using it to write CLIs is its deployment model. Writing code and getting back a single deployable executable is so much easier to manage operationally then a huge python project that needs to get its packages from somewhere. It's possible to bundle python applications too, but rust was built for this and making professional grade CLIs with _clap_ is dead simple. The other thing I like about using _rust_ is that it is really easy to get things to run faster using libraries like _rayon_ to parallelize really simple problems. The last thing I wrote at dropbox was a tool that would help audit codebases and dump its results into a CSV file but one of the things it used was an internal CLI tool to track owners of those files. Running the tool was quite slow, but by doing it in parallel it reduced an hour and a half job to about 15 seconds.
+
+Creating custom tools that improve working conditions for specific use cases is something I have done throughout my career. Tedious tasks and untenable requests often make writing custom tools worth building even when they seem like they won't pay off. There are two reasons, the first one is that they keep you engaged in the work so that you actually perform it with a high degree of quality; the second is that once it's been made, if there is ever a second request to do it again, you can or you can share the tool to make the other person's life a little better. Building tools is great because they keep you engaged in outcomes.
