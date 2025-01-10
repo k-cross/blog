@@ -47,9 +47,9 @@ module.exports = {
             options: /** @type {import('gatsby-remark-mermaid').Options} */ ({
               mermaidConfig: {
                 theme: 'neutral',
-                themeCSS: '.node rect { fill: #fff; }'
-              }
-            })
+                themeCSS: '.node rect { fill: #fff; }',
+              },
+            }),
           },
           {
             resolve: 'gatsby-remark-responsive-iframe',
@@ -59,7 +59,13 @@ module.exports = {
           },
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants',
+
+          {
+            resolve: 'gatsby-remark-smartypants',
+            options: {
+              dashes: 'oldschool',
+            },
+          },
           {
             resolve: 'gatsby-remark-images',
             options: {
@@ -128,7 +134,7 @@ module.exports = {
   }
 }`,
             output: '/rss.xml',
-            title: 'Ken\'s RSS feed',
+            title: "Ken's RSS feed",
             // optional configuration to insert feed reference in pages:
             // if `string` is used, it will be used to create RegExp and then test if pathname of
             // current page satisfied this regular expression;
@@ -147,11 +153,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-google-gtag',
       options: {
-        trackingIds: [
-          'UA-171511946-1',
-          'G-3CHBH260MV',
-          'G-TZ2RFG3SJ7',
-        ],
+        trackingIds: ['UA-171511946-1', 'G-3CHBH260MV', 'G-TZ2RFG3SJ7'],
         gtagConfig: {
           // IP anonymization for GDPR compliance
           anonymize_ip: true,
