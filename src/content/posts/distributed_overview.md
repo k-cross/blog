@@ -4,7 +4,7 @@ title: 'Distributed Algorithms: An Introduction'
 author: [Ken Cross]
 tags: ['Tutorial','Software Engineering']
 excerpt: 'An introduction into the world of distributed computing and its problems'
-date: 2020-07-18T09:20:30-07:00
+date: 2020-07-18
 draft: true
 ---
 
@@ -16,10 +16,10 @@ These analogies often make assumptions which do not translate intuitively in the
 ## Protocols Versus Algorithms
 The two are defined by dictionary.com as follows:
 
-Protocol: 
+Protocol:
 > a set of rules governing the format of messages that are exchanged between computers.
 
-Algorithm: 
+Algorithm:
 > a set of rules for solving a problem in a finite number of steps.
 
 This is something that should be clear, but in my entire career its never been formalized.

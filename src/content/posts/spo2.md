@@ -4,8 +4,8 @@ title: 'Pulse Oximeter Monitor Project'
 author: [Ken Cross]
 tags: ['Project','Software Engineering']
 excerpt: 'Building a monitor for the Masimo RAD8 pulse oximeter'
-date: '2021-03-08T15:11:55.000Z'
-modified: '2021-03-08T15:11:55.000Z'
+date: 2021-03-08
+modified: 2021-03-08
 draft: false
 ---
 When the doctors left us with a medical device to monitor the blood oxygen levels of my newborn son, the less than desirable interface converted us into zombies.

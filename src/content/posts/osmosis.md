@@ -4,8 +4,8 @@ title: 'Osmosis Driven Development'
 author: [Ken Cross]
 tags: ['Opinion','Software Engineering']
 excerpt: 'How context drives the engineering process'
-date: 2018-10-29T07:59:41-07:00
-modified: 2020-08-08T00:06:38-07:00
+date: 2018-10-29
+modified: 2020-08-08
 draft: false
 ---
 In a magical world where all tasks are well defined, performing task $$Y$$ or implement feature $$X$$ is a simple matter of doing.

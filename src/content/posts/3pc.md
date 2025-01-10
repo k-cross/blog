@@ -4,8 +4,8 @@ title: 'Three Phase Commit Data Migrations'
 author: [Ken Cross]
 excerpt: 'A technique describing zero-downtime data migrations'
 tags: ['Technique', 'Software Engineering']
-date: 2018-12-09T12:35:54-07:00
-modified: 2020-07-16T00:06:38-07:00
+date: 2018-12-09
+modified: 2020-07-16
 draft: false
 ---
 
@@ -68,7 +68,7 @@ For instance, using a trivial approach to retry the entire backfill or a sophist
 
 ## Dismantle Phase
 
-This is equivalent to dropping an entity from the database. 
+This is equivalent to dropping an entity from the database.
 With the completion of the _manipulation phase_, getting verification that the backfill is complete is necessary to confirm the entity is no longer required.
 All the code that handled the updates and branching paths that resulted from different version functions can be removed too.
 There's no better feeling as an engineer than reducing all the complexity of a system by removing the bloat and scaffolding that's no longer needed.

@@ -53,5 +53,5 @@ six posts per page.
 ## WIP
 
 [ ] make a11y friendly
-  + color themes should be modified for higher contrast for color blind
+  + color themes should be modified for higher contrast
   + images should have alt text

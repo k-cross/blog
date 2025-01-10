@@ -4,8 +4,8 @@ title: 'Toxic Wastelands'
 author: [Ken Cross]
 tags: ['Opinion', 'Software Engineering', 'Culture', 'Leadership']
 excerpt: 'Toxic cultures ruin businesses'
-date: '2024-13-12T15:11:55.000Z'
-modified: '2024-16-12T00:00:55.000Z'
+date: 2024-12-13
+modified: 2024-12-16
 draft: false
 ---
 
