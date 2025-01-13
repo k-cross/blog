@@ -1,32 +1,32 @@
-import { lighten } from 'polished';
-import React from 'react';
-import styled from '@emotion/styled';
-import RehypeReact from 'rehype-react';
+import { lighten } from "polished";
+import React from "react";
+import styled from "@emotion/styled";
+import RehypeReact from "rehype-react";
 
-import { colors } from '../styles/colors';
+import { colors } from "../styles/colors";
 
 const renderAst = new RehypeReact({
-  createElement: React.createElement,
-  // components: { 'interactive-counter': Counter },
-  components: {},
+	createElement: React.createElement,
+	// components: { 'interactive-counter': Counter },
+	components: {},
 }).Compiler;
 
 const Ast = ({ ast, ...props }: any) => {
-  ast.properties = props;
-  return renderAst(ast);
+	ast.properties = props;
+	return renderAst(ast);
 };
 
 export interface PostContentProps {
-  htmlAst: any;
+	htmlAst: any;
 }
 
 const PostContent: React.FC<PostContentProps> = ({ htmlAst }) => {
-  return (
-    <PostFullContent className="post-full-content">
-      {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
-      <Ast className="post-content" ast={htmlAst} />
-    </PostFullContent>
-  );
+	return (
+		<PostFullContent className="post-full-content">
+			{/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
+			<Ast className="post-content" ast={htmlAst} />
+		</PostFullContent>
+	);
 };
 
 export const PostFullContent = styled.section`
@@ -117,7 +117,7 @@ export const PostFullContent = styled.section`
   strong,
   em {
     /* color: color(var(--darkgrey) l(-5%)); */
-    color: ${lighten('-0.05', colors.darkgrey)};
+    color: ${lighten("-0.05", colors.darkgrey)};
   }
 
   small {
@@ -198,19 +198,19 @@ export const PostFullContent = styled.section`
     padding: 20px;
     max-width: 100%;
     /* border: color(var(--darkgrey) l(-10%)) 1px solid; */
-    /* border: ${lighten('-0.1', colors.darkgrey)} 1px solid; */
+    /* border: ${lighten("-0.1", colors.darkgrey)} 1px solid; */
     /* color: var(--whitegrey); */
     color: ${colors.whitegrey};
     font-size: 1.4rem;
     line-height: 1.5em;
     /* background: color(var(--darkgrey) l(-3%)); */
-    /* background: ${lighten('-0.03', colors.darkgrey)}; */
+    /* background: ${lighten("-0.03", colors.darkgrey)}; */
     border-radius: 5px;
   }
 
   pre ::selection {
     /* color: color(var(--midgrey) l(-25%)); */
-    color: ${lighten('-0.25', colors.midgrey)};
+    color: ${lighten("-0.25", colors.midgrey)};
   }
 
   pre code {
@@ -242,7 +242,7 @@ export const PostFullContent = styled.section`
     width: 1px;
     height: 30px;
     /* background: color(var(--lightgrey) l(+10%)); */
-    background: ${lighten('0.1', colors.lightgrey)};
+    background: ${lighten("0.1", colors.lightgrey)};
     box-shadow: #fff 0 0 0 5px;
     transform: rotate(45deg);
   }
@@ -258,7 +258,7 @@ export const PostFullContent = styled.section`
   h5,
   h6 {
     /* color: color(var(--darkgrey) l(-5%)); */
-    color: ${lighten('-0.05', colors.darkgrey)};
+    color: ${lighten("-0.05", colors.darkgrey)};
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
       'Open Sans', 'Helvetica Neue', sans-serif;
   }
@@ -427,14 +427,14 @@ export const PostFullContent = styled.section`
     text-align: left;
     text-transform: uppercase;
     /* background-color: color(var(--whitegrey) l(+4%)); */
-    background-color: ${lighten('0.04', colors.whitegrey)};
+    background-color: ${lighten("0.04", colors.whitegrey)};
   }
 
   table th,
   table td {
     padding: 6px 12px;
     /* border: color(var(--whitegrey) l(-1%) s(-5%)) 1px solid; */
-    border: ${lighten('-0.01', colors.whitegrey)} 1px solid;
+    border: ${lighten("-0.01", colors.whitegrey)} 1px solid;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -469,7 +469,7 @@ export const PostFullContent = styled.section`
 
     hr {
       /* border-top-color: color(var(--darkmode) l(+8%)); */
-      border-top-color: ${lighten('0.08', colors.darkmode)};
+      border-top-color: ${lighten("0.08", colors.darkmode)};
     }
 
     figcaption {
@@ -497,13 +497,13 @@ export const PostFullContent = styled.section`
     table th {
       color: rgba(255, 255, 255, 0.85);
       /* background-color: color(var(--darkmode) l(+8%)); */
-      background-color: ${lighten('0.08', colors.darkmode)};
+      background-color: ${lighten("0.08", colors.darkmode)};
     }
 
     table th,
     table td {
       /* border: color(var(--darkmode) l(+8%)) 1px solid; */
-      border: ${lighten('0.08', colors.darkmode)} 1px solid;
+      border: ${lighten("0.08", colors.darkmode)} 1px solid;
     }
 
     .kg-bookmark-container,
@@ -557,14 +557,22 @@ export const PostFullContent = styled.section`
   /* Text Selection colour */
   pre[class*='language-']::-moz-selection,
   pre[class*='language-'] ::-moz-selection {
-    text-shadow: none;
-    background: hsla(0, 0%, 100%, 0.15);
+    color: black;
   }
 
   pre[class*='language-']::selection,
   pre[class*='language-'] ::selection {
-    text-shadow: none;
-    background: hsla(0, 0%, 100%, 0.15);
+    color: black;
+  }
+
+  *::-moz-selection,
+  * ::-moz-selection {
+    color: black;
+  }
+
+  *::selection,
+  * ::selection {
+    color: black;
   }
 
   /* Inline code */
