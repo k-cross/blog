@@ -68,10 +68,7 @@
 		"eslint": "9.16.0",
 		"typescript": "5.7.2"
 	},
-	"browserslist": [
-		">2%",
-		"not dead"
-	],
+	"browserslist": [">2%", "not dead"],
 	"engines": {
 		"node": ">=18.0.0"
 	},
