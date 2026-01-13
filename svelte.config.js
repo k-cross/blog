@@ -1,0 +1,28 @@
+import adapter from '@sveltejs/adapter-static';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { mdsvex } from 'mdsvex';
+import mdsvexConfig from './mdsvex.config.js';
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+	extensions: ['.svelte', ...mdsvexConfig.extensions],
+
+	// Consult https://svelte.dev/docs/kit/integrations
+	// for more information about preprocessors
+	preprocess: [vitePreprocess(), mdsvex(mdsvexConfig)],
+
+	kit: {
+		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
+		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
+		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
+		// adapter-static for GitHub Pages
+		adapter: adapter({
+			// default options are fine for GitHub Pages
+			// usually output goes to ./build which gh-pages can serve
+			fallback: '404.html',
+		}),
+		inlineStyleThreshold: 4096,
+	},
+};
+
+export default config;
