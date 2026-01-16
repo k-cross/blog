@@ -21,7 +21,10 @@ let { data } = $props();
 </svelte:head>
 
 <Wrapper>
-	<div class="site-header-background" style="background-image: url({headerImg})">
+	<header
+		class="site-header-background"
+		style="background-image: url({headerImg})"
+	>
 		<div class="inner">
 			<SiteNav />
 			<div class="site-header-content">
@@ -29,7 +32,7 @@ let { data } = $props();
 				<h2 class="site-description">{config.description}</h2>
 			</div>
 		</div>
-	</div>
+	</header>
 
 	<main id="site-main" class="site-main outer">
 		<div class="inner posts">
@@ -54,7 +57,7 @@ let { data } = $props();
 	}
 
 	.site-header-background:before {
-		content: '';
+		content: "";
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -66,7 +69,7 @@ let { data } = $props();
 	}
 
 	.site-header-background:after {
-		content: '';
+		content: "";
 		position: absolute;
 		top: 0;
 		right: 0;

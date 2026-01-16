@@ -63,8 +63,16 @@ onMount(async () => {
 	{#if metadata.tags}
 		<meta property="article:tag" content={metadata.tags[0]} />
 	{/if}
-	<script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
-	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<script
+		async
+		src="https://embed.bsky.app/static/embed.js"
+		charset="utf-8"
+	></script>
+	<script
+		async
+		src="https://platform.twitter.com/widgets.js"
+		charset="utf-8"
+	></script>
 </svelte:head>
 
 <div class="index-layout post-template">
@@ -80,25 +88,35 @@ onMount(async () => {
 
 		<main id="site-main" class="site-main outer">
 			<div class="inner">
-				<article class="post-full {metadata.layout === 'isolated' ? 'layout-isolated' : ''} {!coverImage ? 'no-image' : ''}">
+				<article
+					class="post-full {metadata.layout === 'isolated'
+						? 'layout-isolated'
+						: ''} {!coverImage ? 'no-image' : ''}"
+				>
 					<header class="post-full-header">
 						<section class="post-full-tags">
 							{#if metadata.tags && metadata.tags.length > 0}
-								<a href="/tags/{metadata.tags[0]}">{metadata.tags[0]}</a>
+								<a href="/tags/{metadata.tags[0]}"
+									>{metadata.tags[0]}</a
+								>
 							{/if}
 						</section>
 						<h1 class="post-full-title">{metadata.title}</h1>
 						{#if metadata.author}
-							<h4 class="author-name">
+							<p class="author-name">
 								{metadata.author
-									.map((a: string | { yamlId: string }) => (typeof a === 'string' ? a : a.yamlId))
-									.join(', ')}
-							</h4>
+									.map((a: string | { yamlId: string }) =>
+										typeof a === "string" ? a : a.yamlId,
+									)
+									.join(", ")}
+							</p>
 						{/if}
 						<div class="post-full-byline">
 							<section class="post-full-byline-content">
 								<div class="byline-meta-content">
-									<span class="byline-meta-date">PUBLISHED: {displayDatetime}</span>
+									<span class="byline-meta-date"
+										>PUBLISHED: {displayDatetime}</span
+									>
 								</div>
 							</section>
 						</div>

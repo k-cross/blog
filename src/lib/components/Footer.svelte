@@ -8,10 +8,12 @@ import config from '$lib/config';
 		<section class="copyright">
 			<a href="/">{config.title}</a> &copy; {new Date().getFullYear()}
 		</section>
-		<nav class="site-footer-nav">
+		<nav class="site-footer-nav" aria-label="Footer Navigation">
 			<a href="/">Latest Posts</a>
 			{#if config.bsky}
-				<a href={config.bsky} target="_blank" rel="noopener noreferrer"> Bluesky </a>
+				<a href={config.bsky} target="_blank" rel="noopener noreferrer">
+					Bluesky
+				</a>
 			{/if}
 			<a href="/rss.xml">RSS</a>
 		</nav>
@@ -63,7 +65,7 @@ import config from '$lib/config';
 	}
 
 	.site-footer-nav a:before {
-		content: '';
+		content: "";
 		position: absolute;
 		top: 11px;
 		left: -11px;

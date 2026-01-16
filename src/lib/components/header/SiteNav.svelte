@@ -50,7 +50,7 @@ onMount(() => {
 });
 </script>
 
-<nav class="site-nav">
+<nav class="site-nav" aria-label="Main Navigation">
 	<!-- eslint-disable svelte/no-navigation-without-resolve -->
 	<div class="site-nav-left">
 		<div class="site-nav-content" class:show-title={showTitle}>
@@ -157,7 +157,7 @@ onMount(() => {
 	}
 
 	.nav-list li a:before {
-		content: '';
+		content: "";
 		position: absolute;
 		right: 100%;
 		bottom: 8px;

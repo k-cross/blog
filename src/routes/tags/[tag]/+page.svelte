@@ -15,21 +15,29 @@ let { data } = $props();
 </svelte:head>
 
 <Wrapper>
-	<div class="site-header-background" style="background-image: url({headerImg})">
+	<header
+		class="site-header-background"
+		style="background-image: url({headerImg})"
+	>
 		<div class="inner">
 			<SiteNav isPost={false} />
 			<div class="site-header-content">
 				<h1 class="site-title">{data.tag}</h1>
-				<h2 class="site-description">A collection of {data.posts.length} posts</h2>
+				<h2 class="site-description">
+					A collection of {data.posts.length} posts
+				</h2>
 			</div>
 		</div>
-	</div>
+	</header>
 
 	<main id="site-main" class="site-main outer">
 		<div class="inner posts">
 			<div class="post-feed">
 				{#each data.posts as post (post.fields.slug)}
-					<PostCard {post} large={post.fields.slug === data.posts[0].fields.slug} />
+					<PostCard
+						{post}
+						large={post.fields.slug === data.posts[0].fields.slug}
+					/>
 				{/each}
 			</div>
 		</div>
@@ -48,7 +56,7 @@ let { data } = $props();
 		background-size: cover;
 	}
 	.site-header-background:before {
-		content: '';
+		content: "";
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -60,7 +68,7 @@ let { data } = $props();
 	}
 
 	.site-header-background:after {
-		content: '';
+		content: "";
 		position: absolute;
 		top: 0;
 		right: 0;

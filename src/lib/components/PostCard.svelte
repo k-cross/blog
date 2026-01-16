@@ -177,7 +177,7 @@ let displayDatetime = $derived(format(date, 'dd LLL yyyy'));
 		display: flex;
 		flex-direction: column;
 		margin: 4px 0 0 10px;
-		color: #8da1aa; /* lighten('0.1', colors.midgrey) */
+		color: #5b6c75; /* darkened for a11y, was #8da1aa */
 		font-size: 1.2rem;
 		line-height: 1.4em;
 		font-weight: 400;
