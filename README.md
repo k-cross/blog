@@ -6,8 +6,10 @@ This project is a migration of the original Gatsby blog to [SvelteKit](https://k
 
 - **Framework**: SvelteKit (Svelte 5)
 - **Runtime & Manager**: [Bun](https://bun.sh)
-- **Content**: Markdown/MDX via [mdsvex](https://mdsvex.pngwn.io/)
+- **Content**: Markdown/MDX via [mdsvex](https://mdsvex.pngwn.io/) with `rehype-katex` for Math
 - **Styling**: Native CSS Variables (ported from Emotion/CSS-in-JS)
+- **Tooling**: [Biome](https://biomejs.dev/) for fast linting/formatting
+- **Testing**: [Playwright](https://playwright.dev/) for Visual, E2E, and A11y tests
 - **Deployment**: Static Site Generation via `@sveltejs/adapter-static` (GitHub Pages compatible)
 
 ## 🛠 Project Structure
@@ -27,7 +29,8 @@ This project is a migration of the original Gatsby blog to [SvelteKit](https://k
 
 - **Markdown**: Posts were migrated from the Gatsby `src/content` directory.
 - **Embeds**: External scripts (Twitter, BlueSky) were consolidated into the `<svelte:head>` of the blog post layout to avoid duplicate script execution and hydration errors.
-- **Math/LaTeX**: Complex LaTeX blocks in `spo2.md` and `tools.md` caused issues with the Svelte compiler and have been commented out or simplified.
+- **Math/LaTeX**: Native LaTeX support is enabled via `rehype-katex`.
+- **Data Visualizations**: Complex charts are rendered using generic D3 Svelte wrapper components (e.g. `src/lib/components/charts`) embedded directly inside `.md` fronts via mdsvex.
 
 ### Styling
 
@@ -62,20 +65,24 @@ Generate the static site in the `build/` directory:
 bun run build
 ```
 
-### Running Tests
+### Code Quality & Testing
 
-This project uses [Playwright](https://playwright.dev/) for end-to-end testing.
+This project uses [Biome](https://biomejs.dev/) for lightning-fast linting and formatting, and [Playwright](https://playwright.dev/) for continuous integration checks.
 
-Run all tests:
-
+**Lint & Format:**
 ```bash
-bun run playwright test
+bun run check:all
 ```
 
-Run tests in UI mode:
+**Testing Strategy:**
+The test suite is automated via Playwright to ensure regression-free deployments:
+- **E2E / Routing (`tests/links.spec.ts`)**: Validates internal linking, ensuring no broken links to tags or markdown pages exist across the blog roll.
+- **Styling (`tests/styling.spec.ts`)**: Assertions to guarantee Light/Dark CSS theme variables apply correctly to markdown UI components and code syntax highlighting.
+- **Accessibility (`tests/a11y.spec.ts`)**: Automated WCAG 2.1 AA audits across dynamic pages using `@axe-core/playwright`.
 
+**Run test suite:**
 ```bash
-bun run playwright test --ui
+bunx playwright test
 ```
 
 ### Local Preview
@@ -88,9 +95,10 @@ bun run preview
 
 ## 🚀 Deployment
 
-The project is configured for **GitHub Pages**.
+The project is configured for **GitHub Pages**. 
 
+During the SvelteKit static build (`bun run build`), an empty `.nojekyll` file requires to be present in the `static/` directory to bypass GitHub's default Jekyll asset processing, allowing SvelteKit's bundled `_app` folder to be correctly routed.
+
+To deploy manually:
 1. Run `bun run build`.
 2. Push the contents of the `build/` folder to your `gh-pages` branch.
-
-Alternatively, configure GitHub Actions to checkout the repo, run `bun install && bun run build`, and deploy the `build` folder.

@@ -144,7 +144,7 @@ _Zone to Win_, is a _playbook_ for _Escape Velocity_, which is primarily its the
 Four zones are described:
 
 ```mermaid
-%%{init: {'theme':'dark'}}%%
+%%{init: {'theme':'neutral'}}%%
 quadrantChart
     title Organizational Zones
     x-axis Disruptive Innovation --> Sustaining Innovation
