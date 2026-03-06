@@ -23,7 +23,6 @@ There are four books being reviewed: 'Crossing the Chasm', 'The Innovators Dilem
 Both questions are answered throughout each book, with different contexts. Starting with the first question it seems logical to start with 'Crossing the Chasm'. The book primarily focuses on the marketing and sales aspects of a business. The phrase, _crossing the chasm_, refers to marketing gaps or _chasms_ in the life-cycle of technical products during the different stages of maturity. It's usually visualized as a bell curve with gaps at each standard deviation to the left and right, where the area under the curve represents market adoption. My graphic is different because the information being conveyed in that form makes it look scientific or like statistics are being conducted with _data_.
 
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
 timeline
     title Chasms
     Innovators : Is it viable?
@@ -90,12 +89,11 @@ The principles of disruptive technologies are described by the following:
 Characteristics of disruptive technologies are that they tend to be cheaper, lower performing, and simpler; generally having lower profits and margins and target emerging markets. There is a tendency to always move up market targeting higher profits and yields, people get greedy rather than sustain the thing they have. When investing in new technologies and making bets, assume that they'll be wrong. This is mostly a game of statistics, all it takes is one good bet to makeup for the loss of the others. Disruptive technologies often capitalize on things that existing customers don't need or want, therefore generating a new market and removing barriers and competition, until those markets **become** the main market. A product's maturity usually progresses in the following order:
 
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
 timeline
-    title Product Matureity
+    title Product Maturity
     Functionality : Does it work?
     Reliability : Reducing operational failures of solution
-    Convenience : Making the solution convinent to adopt
+    Convenience : Making the solution convenient to adopt
     Price : How much does it cost compared to competition
 ```
 
@@ -144,7 +142,6 @@ _Zone to Win_, is a _playbook_ for _Escape Velocity_, which is primarily its the
 Four zones are described:
 
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
 quadrantChart
     title Organizational Zones
     x-axis Disruptive Innovation --> Sustaining Innovation

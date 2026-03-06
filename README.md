@@ -42,6 +42,7 @@ This project is a migration of the original Gatsby blog to [SvelteKit](https://k
 ### Prerequisites
 
 - [Bun](https://bun.sh) (v1.0.0 or later)
+- [mise](https://github.com/mise-rs/mise) optionally for managing bun versions
 
 ### Installation
 

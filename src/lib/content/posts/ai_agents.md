@@ -77,7 +77,6 @@ An agent is more or less a trained AI model that lives in a loop to complete a t
 An agent operates in a loop where the most common one I've encountered is _ReAct_ (Reasoning + Acting). It can use _tools_ to interact with the world (codebase, terminal, browser). Here's the life-cycle of a tool call:
 
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
 graph
   prompt["User's Question"]
   tool["Use a known tool to help complete goal"]
@@ -100,7 +99,6 @@ graph
 5. Synthesis: agent reads output and decides whether to call another tool or respond
 
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
 sequenceDiagram
     participant U as User
     participant A as Agent (LLM)
@@ -164,7 +162,6 @@ That's it, it's like marshalling data across a network except the LLM is respons
 Memory in agentic systems is usually broken down along two axes: _duration_ (how long it persists) and _retrieval mechanism_ (how the agent gets it back).
 
 ```mermaid
-%%{init: {'theme':'neutral'}}%%
 quadrantChart
     title Agentic Memory
     x-axis "Implicit Retrieval (unconscious)" --> "Explicit Retrieval (conscious)"

@@ -29,7 +29,6 @@ Unnecessary discretion and keeping secrets will destroy trust. Yes, it is possib
 Transparency comes in two varieties, active and passive. Passive transparency might be worse than being fully opaque because it's pretending to do something it's not by giving anyone a valid claim to say they're being transparent when they share _any_ information. Passive transparency is when information is available, but only after a person has explicitly requested it. It does not sound sinister, but it is easy to weaponize by creating knowledge gaps by withholding information.
 
 ```mermaid
-%%{init: {'theme':'dark'}}%%
 quadrantChart
     title Domains of Knowledge
     quadrant-1 "Known-Knowns"
@@ -72,8 +71,7 @@ config:
   sankey:
     showValues: false
 ---
-%%{init: {'theme':'dark'}}%%
-sankey-beta
+sankey
 
 %% source,target,value
 Work-as-Imagined,Work-as-Done,20.0

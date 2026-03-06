@@ -1,7 +1,6 @@
 <script lang="ts">
 import { format } from 'date-fns';
 import mermaid from 'mermaid';
-import { onMount } from 'svelte';
 import Footer from '$lib/components/Footer.svelte';
 import SiteNav from '$lib/components/header/SiteNav.svelte';
 import Wrapper from '$lib/components/Wrapper.svelte';
@@ -41,27 +40,68 @@ let authorName = $derived(
 );
 let description = $derived(metadata.excerpt || 'Read this post on Ken Cross Blog.');
 
-onMount(async () => {
-	// Find all mermaid code blocks
-	// Note: mdsvex might render code blocks as <pre><code class="language-mermaid">
+$effect(() => {
 	const blocks = document.querySelectorAll('pre code.language-mermaid');
-	let found = false;
+
 	for (const block of blocks) {
 		const content = block.textContent;
 		const pre = block.parentElement;
 		if (pre && content) {
-			found = true;
 			const div = document.createElement('div');
 			div.classList.add('mermaid');
+			// Store original text so mermaid can re-render it when theme changes
+			div.dataset.mermaidText = content;
 			div.textContent = content;
 			pre.replaceWith(div);
 		}
 	}
 
-	if (found) {
-		mermaid.initialize({ startOnLoad: false });
-		await mermaid.run();
+	const renderMermaid = async () => {
+		const mermaidDivs = document.querySelectorAll('.mermaid');
+		if (mermaidDivs.length === 0) return;
+
+		// Clear previous SVGs and restore original text for a clean re-render
+		for (const div of mermaidDivs) {
+			div.removeAttribute('data-processed');
+			div.innerHTML = '';
+			const ogText = (div as HTMLElement).dataset.mermaidText;
+			if (ogText) {
+				div.textContent = ogText;
+			}
+		}
+
+		const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+		mermaid.initialize({
+			startOnLoad: false,
+			theme: isDark ? 'dark' : 'neutral',
+			// Ensures it doesn't try to inherit random site styles that break diagrams
+			securityLevel: 'loose',
+		});
+
+		try {
+			await mermaid.run();
+		} catch (err) {
+			console.error('Mermaid render error:', err);
+		}
+	};
+
+	// Initial render
+	renderMermaid();
+
+	// Listen for OS/Browser theme changes
+	const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+	const handleThemeChange = () => renderMermaid();
+
+	if (mediaQuery?.addEventListener) {
+		mediaQuery.addEventListener('change', handleThemeChange);
 	}
+
+	// Cleanup listener when component unmounts
+	return () => {
+		if (mediaQuery?.removeEventListener) {
+			mediaQuery.removeEventListener('change', handleThemeChange);
+		}
+	};
 });
 </script>
 
