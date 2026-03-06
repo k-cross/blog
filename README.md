@@ -75,14 +75,25 @@ bun run check:all
 ```
 
 **Testing Strategy:**
-The test suite is automated via Playwright to ensure regression-free deployments:
-- **E2E / Routing (`tests/links.spec.ts`)**: Validates internal linking, ensuring no broken links to tags or markdown pages exist across the blog roll.
-- **Styling (`tests/styling.spec.ts`)**: Assertions to guarantee Light/Dark CSS theme variables apply correctly to markdown UI components and code syntax highlighting.
+The test suite spans E2E, accessibility, styling, and component-level unit assertions to ensure regression-free deployments:
+- **E2E / Routing (`tests/links.spec.ts`, `tests/error.spec.ts`)**: Validates internal linking and ensures custom 404 pages gracefully catch invalid routes.
+- **Styling & SEO (`tests/styling.spec.ts`, `tests/seo.spec.ts`)**: Assertions to guarantee Light/Dark CSS theme variables apply correctly and that dynamic metadata (Title, Author, description, Open Graph) are injected correctly into the `<head>`.
 - **Accessibility (`tests/a11y.spec.ts`)**: Automated WCAG 2.1 AA audits across dynamic pages using `@axe-core/playwright`.
+- **Component Unit Tests (`src/lib/**/*.test.ts`)**: Fast, headless Svelte 5 component testing via Vitest + JSDOM to ensure data visualizations (like D3 charts) render correctly outside of the Playwright browser context.
 
 **Run test suite:**
 ```bash
-bunx playwright test
+bun run test
+```
+
+**Run headless E2E tests only:**
+```bash
+bun run test:e2e
+```
+
+**Run component tests only:**
+```bash
+bun run test:unit
 ```
 
 ### Local Preview

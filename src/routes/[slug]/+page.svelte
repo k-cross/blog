@@ -32,6 +32,15 @@ let coverImage = $derived(data.coverImage as string | null);
 let date = $derived(new Date(metadata.date));
 let displayDatetime = $derived(format(date, 'dd LLL yyyy').toUpperCase());
 
+let authorName = $derived(
+	metadata.author
+		? metadata.author
+				.map((a: string | { yamlId: string }) => (typeof a === 'string' ? a : a.yamlId))
+				.join(', ')
+		: 'Ken Cross',
+);
+let description = $derived(metadata.excerpt || 'Read this post on Ken Cross Blog.');
+
 onMount(async () => {
 	// Find all mermaid code blocks
 	// Note: mdsvex might render code blocks as <pre><code class="language-mermaid">
@@ -58,7 +67,14 @@ onMount(async () => {
 
 <svelte:head>
 	<title>{metadata.title}</title>
-	<meta name="description" content={metadata.excerpt} />
+	<meta name="description" content={description} />
+	<meta name="author" content={authorName} />
+	<meta property="og:title" content={metadata.title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:type" content="article" />
+	{#if coverImage}
+		<meta property="og:image" content={coverImage} />
+	{/if}
 	<meta property="article:published_time" content={metadata.date} />
 	{#if metadata.tags}
 		<meta property="article:tag" content={metadata.tags[0]} />
