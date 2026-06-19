@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright';
-import { expect, test } from '@playwright/test';
+import { expect, type Page, test } from '@playwright/test';
 
-const checkA11y = async (page: any, path: string) => {
+const checkA11y = async (page: Page, path: string) => {
 	await page.goto(path);
 	const results = await new AxeBuilder({ page }).analyze();
 	if (results.violations.length > 0) {

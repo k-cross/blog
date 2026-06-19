@@ -70,7 +70,7 @@ $effect(() => {
 			}
 		}
 
-		const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+		const isDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
 		mermaid.initialize({
 			startOnLoad: false,
 			theme: isDark ? 'dark' : 'neutral',

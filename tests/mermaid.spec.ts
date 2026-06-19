@@ -36,8 +36,8 @@ test('mermaid charts render successfully without errors', async ({ page }) => {
 
 		const boundingBox = await svgLocator.boundingBox();
 		expect(boundingBox).not.toBeNull();
-		expect(boundingBox!.width).toBeGreaterThan(0);
-		expect(boundingBox!.height).toBeGreaterThan(0);
+		expect(boundingBox?.width).toBeGreaterThan(0);
+		expect(boundingBox?.height).toBeGreaterThan(0);
 
 		// Ensure it actually rendered paths or groups (not an empty SVG)
 		const innerElementsCount = await svgLocator.locator('g, path, text').count();
