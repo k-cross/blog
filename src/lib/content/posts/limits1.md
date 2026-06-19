@@ -1243,6 +1243,8 @@ failures:
     loom_tests::test_two_threads
 
 test result: FAILED. 2 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 188.06s
+```
+
 The clue _loom_ reveals is really good; there is a read/write race condition, so now we get to think about how it can occur. It suggests the occurrence is on the bounds of being empty or full. Looking at a potential write conflict when empty, it couldn't happen since the last operation marks the space as initiated. The plot thickens: with multiple readers allowed, a separate thread can still come in and perform a read while the thread is paused on the index, so providing an index heuristic, like $idx + 1$, means the write thread still has the opportunity to destroy the value or access it at the same time. This means a new mechanism for determining uninitialized data is required.
 
 Since looking at the current read index is not sufficient, a marking value is definitely one approach to consider, particularly given the amount of time it would take to wrap in a target $64_{bit}$ architecture, and we're already using $0$ semi-specially. Another approach might be to always subtract at least $2 \times capacity$, then ensuring the integer quotients of the read index and the stamp are far enough apart. In other words:
